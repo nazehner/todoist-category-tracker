@@ -1,0 +1,28 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# Environment / secrets
+.env
+.env.*
+*.log
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build / package artifacts
+*.map
+*.zip
+dist/
+build/
+
+# Backup / temp files
+*.bak
+*.tmp

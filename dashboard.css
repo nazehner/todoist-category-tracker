@@ -1,0 +1,5643 @@
+/* Todoist Category Tracker - minimal styles */
+
+.tct-dashboard {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+  --tct-accent: #2271b1;
+}
+
+/* Ensure the HTML [hidden] attribute actually hides elements inside the dashboard.
+   Some author styles (e.g., inline-flex) can otherwise override UA defaults. */
+.tct-dashboard [hidden] {
+  display: none !important;
+}
+@media (min-width: 1200px) {
+  .tct-dashboard {
+    padding: 0 24px;
+  }
+}
+.tct-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 12px 0;
+}
+
+.tct-title {
+  margin: 0;
+}
+
+.tct-card {
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.tct-muted {
+  color: #666;
+}
+.tct-error {
+  border-left: 4px solid #d63638;
+}
+
+.tct-alert {
+  border-left: 4px solid #dba617;
+}
+.tct-goal-row {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.tct-progress {
+  height: 10px;
+  border-radius: 999px;
+  background: #e5e5e5;
+  overflow: hidden;
+}
+
+.tct-progress-bar {
+  height: 10px;
+  background: var(--tct-accent, #2271b1);
+  width: 0%;
+}
+
+.tct-table-wrap {
+  overflow-x: auto;
+}
+
+.tct-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tct-table th,
+.tct-table td {
+  border-bottom: 1px solid #dcdcde;
+  padding: 10px 8px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tct-table th {
+  background: #f6f7f7;
+  font-weight: 600;
+}
+
+.tct-table input[type="number"] {
+  width: 100px;
+}
+
+
+.tct-dashboard .button {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #2271b1;
+  text-decoration: none;
+  cursor: pointer;
+  background: #fff;
+  color: #2271b1;
+  font-size: 14px;
+}
+
+.tct-dashboard .button:hover {
+  opacity: 0.9;
+}
+
+.tct-dashboard .button-primary {
+  background: #2271b1;
+  color: #fff;
+}
+
+/* Tabs */
+.tct-tabs {
+  margin-top: 6px;
+}
+
+/* If a card starts with tabs (e.g., domain tabs), remove extra top spacing. */
+.tct-card > .tct-tabs:first-child {
+  margin-top: 0;
+}
+
+/* Main tab row: allow a right-aligned points pill on the same line */
+.tct-main-tab-nav-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #dcdcde;
+  padding-left: 2px;
+}
+
+.tct-main-tab-nav-row .tct-tab-nav {
+  border-bottom: none;
+  padding-left: 0;
+}
+
+/* Right-aligned nav pills (Reward + Points) */
+.tct-nav-pills {
+  margin-left: auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tct-nav-pills .tct-points-nav-pill {
+  margin-left: 0;
+}
+
+.tct-points-nav-pill {
+  margin-left: auto;
+  appearance: none;
+  border: 1px solid rgba(34, 113, 177, 0.25);
+  background: #fff;
+  color: #1d2327;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.1;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.tct-points-nav-pill strong {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.tct-points-nav-pill:hover {
+  border-color: rgba(34, 113, 177, 0.45);
+}
+
+.tct-points-nav-pill:focus {
+  outline: 2px solid var(--tct-accent, #2271b1);
+  outline-offset: 2px;
+}
+
+.tct-points-nav-pill:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.tct-points-nav-pill-muted {
+  opacity: 0.75;
+}
+.tct-tab-nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #dcdcde;
+  padding-left: 2px;
+}
+
+/* Domain tabs: keep domains on one scrollable row */
+.tct-domain-tabs .tct-tab-nav {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  gap: 8px;
+  padding-left: 2px;
+}
+
+/* Separator between system tabs (Urgent/Completed) and domain tabs */
+.tct-tab-separator {
+  display: inline-block;
+  width: 1px;
+  align-self: stretch;
+  background: #c3c4c7;
+  margin: 4px 4px;
+  flex-shrink: 0;
+}
+
+/* Domain tabs: larger + domain-colored (matches domain header aesthetic) */
+.tct-domain-tabs .tct-tab {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 12px 12px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  background: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.12);
+  border-color: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.45);
+}
+
+.tct-domain-tabs .tct-tab::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--tct-domain-color, #e2e8f0);
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.tct-domain-tabs .tct-tab:hover {
+  background: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.06);
+}
+
+.tct-domain-tabs .tct-tab:focus {
+  outline: 2px solid rgba(var(--tct-domain-color-rgb, 34, 113, 177), 0.55);
+  outline-offset: 2px;
+}
+
+.tct-domain-tabs .tct-tab:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.tct-domain-tabs .tct-tab-active {
+  background: #fff;
+  border-bottom-color: #fff;
+}
+
+.tct-tab {
+  appearance: none;
+  border: 1px solid #c3c4c7;
+  border-bottom: 1px solid #dcdcde;
+  background: #f6f7f7;
+  color: #1d2327;
+  padding: 8px 12px;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.tct-tab:focus {
+  outline: 2px solid var(--tct-accent, #2271b1);
+  outline-offset: 2px;
+}
+
+.tct-tab:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.tct-tab:hover {
+  background: #fff;
+}
+
+.tct-tab-active {
+  background: #fff;
+  border-bottom-color: #fff;
+  font-weight: 600;
+}
+
+.tct-tab-panel {
+  display: none;
+  margin-top: 12px;
+}
+
+.tct-tab-panel-active {
+  display: block;
+}
+
+/* Goals list */
+.tct-goals-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.tct-goals-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tct-interval-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.tct-interval-chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid #c3c4c7;
+  border-radius: 999px;
+  background: #f6f7f7;
+  font-size: 13px;
+}
+
+.tct-domain-goal .tct-goal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.tct-inline-form {
+  margin: 0;
+}
+
+/* Modal */
+.tct-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9998;
+}
+
+.tct-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(720px, 95vw);
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-radius: 10px;
+  z-index: 9999;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.tct-modal-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.tct-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #dcdcde;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+}
+
+
+.tct-modal-header h3 {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+
+.tct-modal-close {
+  appearance: none;
+  border: 1px solid #c3c4c7;
+  background: #f6f7f7;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  margin-left: auto;
+}
+
+
+.tct-modal-body {
+  padding: 16px;
+}
+
+.tct-form-row {
+  margin-bottom: 14px;
+}
+
+.tct-form-row-head {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.tct-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.tct-form-row select,
+.tct-form-row input[type="number"],
+.tct-form-row textarea {
+  width: 100%;
+  max-width: 520px;
+}
+
+.tct-form-row textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.tct-goal-weight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 520px;
+}
+.tct-goal-warning {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid #ffe8a3;
+  border-left: 4px solid #dba617;
+  border-radius: 10px;
+  background: #fff7db;
+}
+
+.tct-interval-bonus-preview {
+  width: 100%;
+  max-width: 520px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #c3c4c7;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 600;
+}
+
+.tct-intervals {
+  display: grid;
+  gap: 10px;
+}
+
+.tct-interval-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  align-items: end;
+  border: 1px solid #c3c4c7;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fafafa;
+}
+
+
+/* Allowed fails: match interval row layout (3 columns on desktop, 1 column on mobile). */
+.tct-allowed-fails-grid {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Active / Pause cycle modal controls */
+.tct-availability-cycle-toggle-grid {
+  grid-template-columns: minmax(140px, 170px) minmax(0, 1fr);
+}
+
+.tct-availability-cycle-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tct-availability-summary-field {
+  min-width: 0;
+}
+
+[data-tct-availability-summary] {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid #c3c4c7;
+  border-radius: 8px;
+  background: #fff;
+  line-height: 1.35;
+}
+
+.tct-goal-warning-error {
+  border-color: #f2c2c2;
+  border-left-color: #dc2626;
+  background: #fff1f1;
+  color: #8b1e1e;
+}
+
+.tct-availability-cycle-grid .tct-interval-field,
+.tct-availability-cycle-toggle-grid .tct-interval-field {
+  min-width: 0;
+}
+.tct-interval-field input[type="number"],
+.tct-interval-field select {
+  width: 100%;
+}
+.tct-modal-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* Goal modal actions: keep Delete on the left and Save/Cancel on the right. */
+.tct-goal-modal-actions {
+  justify-content: flex-end;
+}
+
+.tct-goal-modal-actions .tct-goal-delete-btn {
+  margin-right: auto;
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.tct-goal-modal-actions .tct-goal-delete-btn:hover,
+.tct-goal-modal-actions .tct-goal-delete-btn:focus {
+  border-color: #b91c1c;
+  background: rgba(220, 38, 38, 0.08);
+  color: #b91c1c;
+}
+
+/* --- Goal modal: vitality plant picker --- */
+
+.tct-plant-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.tct-plant-picker-control {
+  position: relative;
+  min-width: 0;
+}
+
+.tct-plant-picker-selected {
+  appearance: none;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid #c3c4c7;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+
+.tct-plant-picker-selected:focus {
+  outline: 2px solid rgba(34, 113, 177, 0.35);
+  outline-offset: 2px;
+}
+
+.tct-plant-thumb {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  flex: 0 0 auto;
+}
+
+.tct-plant-selected-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tct-plant-caret {
+  flex: 0 0 auto;
+  opacity: 0.65;
+}
+
+.tct-plant-picker-popover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 6px);
+  z-index: 10000;
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-radius: 10px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.18);
+  padding: 12px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.tct-plant-search {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.tct-plant-preview {
+  border: 1px solid #c3c4c7;
+  border-radius: 10px;
+  padding: 16px;
+  background: #f9f9f9;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.tct-plant-preview img {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.tct-plant-preview-placeholder {
+  font-size: 13px;
+  color: #646970;
+}
+
+.tct-plant-options {
+  border: 1px solid #c3c4c7;
+  border-radius: 10px;
+  overflow: auto;
+  max-height: 200px;
+  background: #fff;
+}
+
+.tct-plant-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.tct-plant-option:hover {
+  background: #f6f7f7;
+}
+
+.tct-plant-option-previewed {
+  background: rgba(34, 113, 177, 0.15);
+  border-left: 3px solid #2271b1;
+}
+
+.tct-plant-option-selected {
+  position: relative;
+}
+
+.tct-plant-option-selected::after {
+  content: '\2713';
+  position: absolute;
+  right: 10px;
+  color: #2271b1;
+  font-weight: bold;
+}
+
+.tct-plant-option img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.tct-plant-option-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.tct-plant-empty {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.tct-plant-popover-actions {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #c3c4c7;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.tct-plant-actions {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 700px) {
+  .tct-plant-picker-popover {
+    max-height: 60vh;
+  }
+  
+  .tct-plant-preview {
+    min-height: 160px;
+  }
+  
+  .tct-plant-preview img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 700px) {
+  .tct-interval-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tct-goal-weight-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Domains dashboard layout --- */
+.tct-domain-goals {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.tct-domain-goal {
+  border: 1px solid #c3c4c7;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border-left: 4px solid transparent;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Negative goal tile styling */
+.tct-domain-goal[data-goal-type="never"],
+.tct-domain-goal[data-goal-type="harm_reduction"] {
+  border-left-color: #f59e0b;
+}
+
+.tct-domain-goal[data-goal-type="never"] .tct-goal-complete-btn,
+.tct-domain-goal[data-goal-type="harm_reduction"] .tct-goal-complete-btn {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.tct-domain-goal[data-goal-type="never"] .tct-goal-complete-btn:hover,
+.tct-domain-goal[data-goal-type="harm_reduction"] .tct-goal-complete-btn:hover {
+  background: rgba(245, 158, 11, 0.2);
+}
+
+.tct-domain-goal-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.tct-domain-goal-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.tct-domain-goal-title-row .tct-domain-goal-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.tct-domain-goal .tct-goal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.tct-domain-goal .tct-goal-action-btn {
+  appearance: none;
+  border: 1px solid rgba(140, 143, 148, 0.45);
+  background: rgba(255, 255, 255, 0.10);
+  color: inherit;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.tct-domain-goal .tct-goal-action-btn:hover,
+.tct-domain-goal .tct-goal-action-btn:focus {
+  background: rgba(255, 255, 255, 0.16);
+  outline: none;
+}
+
+.tct-domain-goal .tct-goal-action-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.tct-domain-goal .tct-goal-complete-btn {
+  flex: 1 1 auto;
+  font-weight: 700;
+  text-align: center;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tct-domain-goal .tct-goal-edit-btn {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 34px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tct-domain-goal .tct-goal-edit-btn .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+}
+
+
+.tct-domain-goal .tct-goal-history-btn {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 34px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tct-domain-goal .tct-goal-history-btn .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+}
+.tct-history-loading {
+  padding: 6px 0;
+}
+
+.tct-history-error {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 1px solid #f6c3c7;
+  border-left: 4px solid #d63638;
+  border-radius: 10px;
+  background: #fde7e9;
+}
+
+/* --- History completion map --- */
+
+.tct-history-heatmap {
+  margin: 10px 0 8px;
+}
+
+.tct-history-heatmap-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 2px 0 8px;
+}
+
+.tct-history-heatmap-btn {
+  appearance: none;
+  border: 1px solid #c3c4c7;
+  background: #f6f7f7;
+  border-radius: 10px;
+  width: 38px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tct-history-heatmap-btn:hover {
+  background: #fff;
+}
+
+.tct-history-heatmap-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.tct-history-heatmap-loading {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #646970;
+}
+
+.tct-history-heatmap-grid-wrap {
+  overflow-x: auto;
+  padding: 2px 0 6px;
+}
+
+.tct-history-heatmap-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 10px);
+  gap: 3px;
+  width: max-content;
+  margin: 0 auto;
+}
+
+/* Week/Month views in the History modal use the dashboard-style spectrum bars (not the year grid). */
+.tct-history-heatmap[data-tct-view="week"] .tct-history-heatmap-grid,
+.tct-history-heatmap[data-tct-view="month"] .tct-history-heatmap-grid {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.tct-history-heatmap-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #dcdcde;
+}
+
+.tct-history-heatmap-cell-outyear {
+  opacity: 0.45;
+  background: #e5e7eb;
+}
+
+.tct-history-heatmap-cell-inyear {
+  background: #dcdcde;
+}
+
+.tct-history-heatmap-cell-done {
+  background: #00a32a;
+}
+
+.tct-history-heatmap-footer {
+  text-align: center;
+  font-size: 12px;
+  color: #646970;
+  margin-top: 4px;
+}
+
+.tct-history-heatmap-year {
+  font-weight: 600;
+}
+
+.tct-history-heatmap-stats {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #1d2327;
+}
+
+.tct-history-heatmap-stat strong {
+  font-weight: 600;
+  color: #00a32a;
+}
+
+/* --- History modal tabs --- */
+
+.tct-history-tabs {
+  display: flex;
+  gap: 6px;
+  margin: 10px 0 12px;
+  padding-bottom: 0;
+  border-bottom: 1px solid #dcdcde;
+}
+
+.tct-history-tab {
+  appearance: none;
+  border: 1px solid #c3c4c7;
+  border-bottom: 1px solid #dcdcde;
+  background: #f6f7f7;
+  padding: 8px 12px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.tct-history-tab:hover {
+  background: #fff;
+}
+
+.tct-history-tab-active {
+  background: #fff;
+  border-bottom-color: #fff;
+  font-weight: 700;
+}
+
+.tct-history-panel {
+  margin-top: 4px;
+}
+
+.tct-history-undo-col {
+  width: 96px;
+  text-align: right;
+}
+
+.tct-history-switch-btn {
+  margin-right: 6px;
+}
+
+.tct-history-undo-btn {
+  appearance: none;
+  border: 1px solid #c3c4c7;
+  background: #f6f7f7;
+  border-radius: 10px;
+  width: 38px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tct-history-undo-btn:hover {
+  background: #fff;
+}
+
+.tct-history-undo-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tct-history-undo-btn .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+}
+
+.tct-history-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.tct-history-status-met {
+  background: rgba(0, 163, 42, 0.16);
+  color: #006b1b;
+}
+
+.tct-history-status-missed {
+  background: rgba(214, 54, 56, 0.16);
+  color: #8a1b1d;
+}
+
+.tct-history-status-sofar {
+  background: rgba(0, 116, 204, 0.12);
+  color: #055d9c;
+}
+
+.tct-domain-goal-sub {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+
+
+/* --- /* --- Goal tile layout (compact + wrap-friendly) --- */
+
+.tct-domain-goal-top {
+  display: block;
+}
+
+.tct-domain-goal-main {
+  min-width: 0;
+}
+
+/* Goal meta grid: keeps the title full-width, and reserves a right column for points and countdown. */
+.tct-goal-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 10px;
+  align-items: start;
+}
+
+.tct-goal-meta-left {
+  min-width: 0;
+}
+
+.tct-goal-points-row {
+  float: none;
+  margin: 0;
+  margin-top: 20px;
+  display: block;
+  grid-column: 2;
+  justify-self: end;
+  align-self: start;
+}
+/* Vertical points pill (Completion / Bonus / Penalty) */
+.tct-goal-points-pill {
+  border: 1px solid #c3c4c7;
+  background: #fff;
+  border-radius: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 2px;
+  padding: 2px;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.tct-goal-points-pill-completion,
+.tct-goal-points-pill-bonus,
+.tct-goal-points-pill-penalty {
+  font-size: 11px;
+  font-weight: 800;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  white-space: nowrap;
+  line-height: 1;
+}
+.tct-goal-points-pill-completion {
+  background: #e8f7ee;
+  color: #007017;
+}
+
+.tct-goal-points-pill-bonus {
+  background: #00a32a;
+  color: #fff;
+}
+
+.tct-goal-points-pill-penalty {
+  background: #9b1c1c;
+  color: #fff;
+}
+
+.tct-domain-goal-goalline {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.tct-goal-completed-line {
+  font-size: 13px;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+/* --- Goal status styling (cockpit) --- */
+
+.tct-goal-status-completed {
+  background: #e8f7ee;
+  border-color: #cfead9;
+  border-left-color: #00a32a;
+}
+
+.tct-goal-status-on-track {
+  /* default */
+}
+
+.tct-goal-status-risk {
+  background: #fff7db;
+  border-color: #ffe8a3;
+  border-left-color: #dba617;
+}
+
+.tct-goal-status-critical {
+  background: #fde7e9;
+  border-color: #f6c3c7;
+  border-left-color: #d63638;
+}
+
+.tct-goal-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -2px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.tct-goal-status-pill-risk {
+  background: rgba(219, 166, 23, 0.18);
+  color: #7a5600;
+}
+
+.tct-goal-status-pill-critical {
+  background: rgba(214, 54, 56, 0.16);
+  color: #8a1b1d;
+}
+
+.tct-goal-status-pill + .tct-goal-pace-text {
+  margin-left: 0;
+}
+
+.tct-goal-status-line {
+  display: block;
+}
+
+.tct-goal-status-line .tct-goal-status-pill {
+  margin-left: 0;
+}
+
+.tct-goal-pace-line1 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Role-level badge (preferred over domain-level warnings) */
+.tct-role-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 18px;
+  margin-right: 0;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.15);
+}
+
+.tct-role-badge-risk {
+  background: rgba(219, 166, 23, 0.95);
+  color: #1f2937;
+}
+
+.tct-role-badge-critical {
+  background: rgba(214, 54, 56, 0.95);
+  color: #fff;
+}
+
+/* ------------------------------------------------------------
+   Domain rows + role columns (Domains are rows, Roles are columns)
+------------------------------------------------------------- */
+
+.tct-domain-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.tct-domain-row {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  padding: 12px;
+  border-left: 6px solid var(--tct-domain-color, #e2e8f0);
+}
+.tct-domain-row-progress {
+  margin-bottom: 10px;
+}
+
+/* --- Domain points heatmap (full-width strip) --- */
+
+.tct-domain-heatmap {
+  margin: 0 0 10px;
+}
+
+.tct-domain-heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--tct-domain-heatmap-days, 7), minmax(0, 1fr));
+  gap: 3px;
+  width: 100%;
+}
+
+.tct-domain-heatmap-cell {
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.10);
+}
+
+.tct-domain-heatmap-l0 {
+  background: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.10);
+}
+
+.tct-domain-heatmap-l1 {
+  background: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.25);
+}
+
+.tct-domain-heatmap-l2 {
+  background: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.45);
+}
+
+.tct-domain-heatmap-l3 {
+  background: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.65);
+}
+
+.tct-domain-heatmap-l4 {
+  background: rgba(var(--tct-domain-color-rgb, 226, 232, 240), 0.85);
+}
+
+.tct-role-columns {
+  display: grid;
+  grid-template-columns: repeat(var(--tct-role-columns, 1), minmax(220px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+.tct-role-columns:focus {
+  outline: none;
+}
+
+
+.tct-role-column {
+  border: 1px solid #edf2f7;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+}
+
+.tct-role-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: -10px -10px 10px -10px;
+  padding: 8px 10px;
+  background: var(--tct-domain-color, #2271b1);
+  color: #fff;
+  border-radius: 9px 9px 8px 8px;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.12);
+}
+
+.tct-role-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.35);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tct-role-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.tct-role-metric {
+  font-size: 13px;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.35);
+}
+
+.tct-role-header .tct-muted {
+  color: rgba(255,255,255,0.85);
+}
+
+.tct-role-progress {
+  margin-bottom: 10px;
+}
+
+.tct-role-empty {
+  margin: 10px 0 0;
+  color: #64748b;
+}
+
+@media (max-width: 700px) {
+  .tct-dashboard {
+    padding: 0 8px;
+  }
+  .tct-role-columns {
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+}
+
+.tct-color-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.12);
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.tct-color-hex {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  color: #475569;
+}
+
+/* --- Roles table: zebra + domain color badges + drag reordering --- */
+
+.tct-roles-table .tct-col-order {
+  width: 32px;
+}
+
+.tct-roles-table tbody tr:nth-child(even) {
+  background: #f6f7f7;
+}
+
+.tct-roles-table tbody tr:nth-child(even) td {
+  background: #f6f7f7;
+}
+
+.tct-domain-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tct-domain-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.tct-drag-handle {
+  display: inline-block;
+  width: 16px;
+  height: 14px;
+  cursor: grab;
+  opacity: 0.85;
+  border-radius: 3px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #8c8f94,
+    #8c8f94 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+.tct-drag-handle:active {
+  cursor: grabbing;
+}
+
+.tct-sort-placeholder {
+  height: 44px;
+  background: rgba(34, 113, 177, 0.08);
+  border: 1px dashed rgba(34, 113, 177, 0.35);
+}
+
+
+/* --- Goals table: zebra + sortable headers + domain color badges --- */
+
+.tct-goals-table tbody tr:nth-child(even) {
+  background: #f6f7f7;
+}
+
+.tct-goals-table tbody tr:nth-child(even) td {
+  background: #f6f7f7;
+}
+
+.tct-goals-table th.tct-sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 22px;
+}
+
+.tct-goals-table th.tct-sortable::after {
+  content: '\21C5';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #8c8f94;
+  opacity: 0.7;
+}
+
+.tct-goals-table th.tct-sortable.tct-sort-active-asc::after {
+  content: '\25B2';
+  color: #1d2327;
+  opacity: 1;
+}
+
+.tct-goals-table th.tct-sortable.tct-sort-active-desc::after {
+  content: '\25BC';
+  color: #1d2327;
+  opacity: 1;
+}
+
+
+
+/* --- Goals table: points/bonus columns --- */
+
+.tct-goals-table th.tct-col-ppc,
+.tct-goals-table td.tct-col-ppc {
+  width: 110px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tct-goals-table th.tct-col-bonus,
+.tct-goals-table td.tct-col-bonus {
+  width: 200px;
+  white-space: nowrap;
+}
+
+.tct-points-chip {
+  display: inline-block;
+  min-width: 44px;
+  text-align: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #c3c4c7;
+  background: #fff;
+  font-weight: 700;
+}
+
+.tct-bonus-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tct-bonus-chip {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid #c3c4c7;
+  border-radius: 999px;
+  background: #f6f7f7;
+  font-size: 12px;
+  font-weight: 600;
+}
+/* --- Goal Type Chips --- */
+
+.tct-goal-type-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tct-goal-type-chip.tct-goal-type-positive {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.tct-goal-type-chip.tct-goal-type-never {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.tct-goal-type-chip.tct-goal-type-harm-reduction {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+
+/* --- Points & Ledger --- */
+
+.tct-points-card .tct-points-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.tct-points-card .tct-points-balance {
+  font-size: 1.1em;
+  margin-top: 6px;
+}
+
+.tct-ledger-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-bottom: 10px;
+}
+
+.tct-ledger-balance {
+  font-size: 1.1em;
+}
+
+/* Ledger table layout */
+
+.tct-ledger-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.tct-ledger-table {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  table-layout: fixed !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.tct-ledger-table th,
+.tct-ledger-table td {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 10px 8px;
+  text-align: center !important;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
+.tct-ledger-table th {
+  background: #f6f7f7;
+  font-weight: 700;
+}
+
+
+.tct-ledger-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tct-ledger-table tbody tr[data-tct-open-goal-history="1"] {
+  cursor: pointer;
+}
+
+.tct-ledger-table tbody tr[data-tct-open-goal-history="1"]:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.tct-ledger-date-col,
+.tct-ledger-points-col,
+.tct-ledger-goal-col,
+.tct-ledger-role-col,
+.tct-ledger-domain-col,
+.tct-ledger-type-col,
+.tct-ledger-undo-col {
+  width: 14.2857% !important;
+}
+
+.tct-ledger-table th.tct-ledger-goal-col,
+.tct-ledger-table td.tct-ledger-goal-col {
+  text-align: center !important;
+}
+
+.tct-ledger-table th.tct-ledger-date-col,
+.tct-ledger-table td.tct-ledger-date-col {
+  font-variant-numeric: tabular-nums;
+}
+
+.tct-ledger-points-col,
+.tct-ledger-undo-col {
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .tct-ledger-table {
+    font-size: 12px;
+  }
+
+  .tct-ledger-table th,
+  .tct-ledger-table td {
+    padding: 8px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tct-ledger-table {
+    font-size: 11px;
+  }
+
+  .tct-ledger-table th,
+  .tct-ledger-table td {
+    padding: 7px 4px;
+  }
+}
+
+
+
+.tct-points-positive {
+  color: #00a32a;
+  font-weight: 600;
+}
+
+.tct-points-negative {
+  color: #d63638;
+  font-weight: 600;
+}
+
+
+/* Toast (non-blocking notifications) */
+.tct-toast{position:fixed;right:24px;bottom:24px;max-width:340px;background:#111827;color:#fff;padding:10px 12px;border-radius:8px;box-shadow:0 10px 20px rgba(0,0,0,0.15);z-index:99999;font-size:13px;line-height:1.35;}
+.tct-toast.tct-toast-error{background:#b91c1c;}
+.tct-toast.tct-toast-show{display:block;}
+
+.tct-btn-loading{opacity:.75;pointer-events:none;}
+
+
+/* Domain year spectrum bar (Jan 1 - Dec 31, always full year) */
+.tct-domain-yearbar {
+  margin: 10px 0 14px;
+}
+
+.tct-domain-yearbar[role='button'] {
+  cursor: pointer;
+}
+
+.tct-domain-yearbar:focus {
+  outline: 2px solid rgba(var(--tct-domain-color-rgb), 0.35);
+  outline-offset: 2px;
+}
+
+.tct-domain-yearbar-bar {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: none;
+}
+
+.tct-domain-yearbar-strip {
+  display: grid;
+  grid-template-columns: repeat(var(--tct-domain-yearbar-days, 365), minmax(0, 1fr));
+  gap: 0;
+  height: 14px;
+}
+
+.tct-domain-yearbar-seg {
+  height: 14px;
+  background: #e5e7eb;
+}
+
+.tct-domain-yearbar-seg.tct-domain-yearbar-filled {
+  background: rgba(var(--tct-domain-color-rgb), var(--tct-heat-alpha, 0.6));
+}
+
+.tct-domain-yearbar-monthlines {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  pointer-events: none;
+}
+
+.tct-domain-yearbar-monthlines > span {
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.tct-domain-yearbar-monthlines > span:first-child {
+  border-left: none;
+}
+
+.tct-domain-yearbar-monthlabels {
+  display: grid;
+  justify-items: center;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #64748b;
+  user-select: none;
+}
+
+.tct-domain-yearbar-monthlabels > span {
+  display: inline-block;
+  text-align: center;
+}
+
+/* Light "bubble" highlight for the current day/week/month labels on spectrum bars */
+.tct-heatmap-current-label {
+  background: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 999px;
+  padding: 1px 6px;
+  color: #065f46;
+  font-weight: 700;
+  line-height: 1.2;
+  box-sizing: border-box;
+}
+
+
+/* Domain heatmap modal (multi-year, discrete day boxes) */
+.tct-domain-heatmap-modal .tct-domain-heatmap-loading {
+  color: #64748b;
+  margin: 8px 0;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-error {
+  color: #b91c1c;
+  margin: 8px 0;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-content {
+  margin-top: 8px;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-year-block {
+  margin-bottom: 18px;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-year-label {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tct-domain-heatmap-period {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.tct-domain-heatmap-period .tct-domain-heatmap-year-label {
+  margin-bottom: 0;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-grid-wrap {
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 10px);
+  gap: 3px;
+  width: max-content;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #e5e7eb;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-cell-outyear {
+  background: #f1f5f9;
+  opacity: 0.5;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-cell-filled {
+  background: rgba(var(--tct-domain-color-rgb), var(--tct-heat-alpha, 0.6));
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-empty {
+  color: #64748b;
+  padding: 6px 0;
+}
+
+/* Make the domain heatmap popup spacious (multi-heatmap view) */
+.tct-domain-heatmap-modal {
+  width: min(1780px, 99vw);
+  max-height: 92vh;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-content {
+  margin-top: 12px;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-year-block {
+  margin-bottom: 26px;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-grid-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+}
+
+/* In month/week views, the strips should never show horizontal scrollbars */
+.tct-domain-heatmap-modal[data-tct-view="month"] .tct-domain-heatmap-grid-wrap,
+.tct-domain-heatmap-modal[data-tct-view="week"] .tct-domain-heatmap-grid-wrap {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  padding-bottom: 0 !important;
+  scrollbar-width: none;
+}
+
+.tct-domain-heatmap-modal[data-tct-view="month"] .tct-domain-heatmap-grid-wrap::-webkit-scrollbar,
+.tct-domain-heatmap-modal[data-tct-view="week"] .tct-domain-heatmap-grid-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-year-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-row-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #065f46;
+  padding-top: 2px;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-row-label small {
+  display: block;
+  font-weight: 500;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+
+
+/* Domain month spectrum bar */
+
+
+/* Domain week spectrum bar (current week) */
+.tct-domain-weekbar {
+  margin: 8px 0 8px;
+}
+
+.tct-domain-weekbar-bar {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(148, 163, 184, 0.10);
+}
+
+.tct-domain-weekbar-strip {
+  display: grid;
+  grid-template-columns: repeat(var(--tct-domain-weekbar-days, 7), minmax(0, 1fr));
+  gap: 0;
+  height: 14px;
+}
+
+.tct-domain-weekbar-seg {
+  display: block;
+  height: 14px;
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.tct-domain-weekbar-seg.tct-domain-weekbar-filled {
+  background: rgba(var(--tct-domain-color-rgb, 0, 0, 0), var(--tct-heat-alpha, 0.55));
+}
+
+.tct-domain-weekbar-dayticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tct-domain-weekbar-day-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(15, 23, 42, 0.16);
+}
+
+.tct-domain-weekbar-daylabels {
+  position: relative;
+  margin-top: 4px;
+  height: 20px;
+  font-size: 11px;
+  color: #64748b;
+  user-select: none;
+  pointer-events: none;
+}
+
+.tct-domain-weekbar-day-label {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tct-domain-monthbar {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.tct-domain-monthbar[role='button'] {
+  cursor: pointer;
+}
+
+.tct-domain-monthbar:focus {
+  outline: 2px solid rgba(var(--tct-domain-color-rgb, 0,0,0), 0.35);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.tct-domain-monthbar-bar {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: none;
+}
+
+.tct-domain-monthbar-strip {
+  display: grid;
+  grid-template-columns: repeat(var(--tct-domain-monthbar-days, 31), minmax(0, 1fr));
+  gap: 0;
+  height: 14px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.tct-domain-monthbar-seg {
+  display: block;
+  height: 14px;
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.tct-domain-monthbar-seg.tct-domain-monthbar-filled {
+  background: rgba(var(--tct-domain-color-rgb, 0,0,0), var(--tct-heat-alpha, 0.55));
+}
+
+.tct-domain-monthbar-weekticks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  pointer-events: none;
+}
+
+.tct-domain-monthbar-week-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(15, 23, 42, 0.18);
+}
+
+.tct-domain-monthbar-weeklabels {
+  position: relative;
+  margin-top: 4px;
+  pointer-events: none;
+  font-size: 11px;
+  color: #64748b;
+  user-select: none;
+  height: 20px;
+}
+
+.tct-domain-monthbar-week-label {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* Month strips inside the domain heatmap modal */
+.tct-domain-monthbar-modal .tct-domain-monthbar-bar {
+  margin-bottom: 6px;
+}
+
+.tct-domain-monthbar-modal,
+.tct-domain-weekbar-modal {
+  width: 100%;
+}
+
+
+.tct-divider {
+  border: 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  margin: 16px 0;
+}
+
+.tct-settings-heading {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.tct-settings-row label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.tct-settings-row .tct-select {
+  min-width: 180px;
+}
+
+.tct-settings-help {
+  margin: 6px 0 0 0;
+}
+
+/* Archived goals (Settings tab): typeahead dropdown + selected row highlight */
+[data-tct-archived-goal-results="1"] {
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 10px;
+  background: #fff;
+}
+
+[data-tct-archived-goal-results="1"] .tct-table {
+  margin: 0;
+}
+
+[data-tct-archived-goal-results="1"] tr[data-tct-archived-goal-row="1"]:hover {
+  background: rgba(34, 113, 177, 0.06);
+}
+
+[data-tct-archived-goal-results="1"] tr.tct-archived-goal-selected {
+  background: rgba(34, 113, 177, 0.12);
+  outline: 2px solid rgba(34, 113, 177, 0.35);
+  outline-offset: -2px;
+}
+
+/* Reward Hall of Fame (Chunk 9) */
+.tct-reward-hof {
+  margin-top: 14px;
+}
+
+.tct-reward-hof-heading {
+  margin: 12px 0 8px 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.tct-reward-hof-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tct-reward-hof-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.tct-reward-hof-thumb {
+  width: 64px;
+  flex: 0 0 64px;
+}
+
+.tct-reward-hof-thumb img {
+  width: 64px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.tct-reward-hof-thumb-empty {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background: rgba(148, 163, 184, 0.18);
+  border: 1px dashed rgba(148, 163, 184, 0.4);
+}
+
+.tct-reward-hof-meta {
+  min-width: 0;
+}
+
+.tct-reward-hof-title {
+  margin-bottom: 4px;
+}
+
+.tct-reward-hof-line {
+  font-size: 13px;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+@media (max-width: 520px) {
+  .tct-reward-hof-item {
+    flex-direction: column;
+  }
+
+  .tct-reward-hof-thumb {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .tct-reward-hof-thumb img {
+    width: 100%;
+    max-width: 180px;
+  }
+
+  .tct-reward-hof-thumb-empty {
+    width: 100%;
+    max-width: 180px;
+  }
+}
+
+
+
+/* Domain heatmap view switcher (Week / Month / Year) */
+.tct-domain-heatmap-viewtabs {
+  display: flex;
+  gap: 10px;
+  margin: 6px 0 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tct-domain-heatmap-viewtab {
+  appearance: none;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #ffffff;
+  color: #065f46;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.tct-domain-heatmap-viewtab:hover {
+  border-color: rgba(15, 23, 42, 0.22);
+}
+
+.tct-domain-heatmap-viewtab:focus {
+  outline: 2px solid rgba(var(--tct-domain-color-rgb, 0,0,0), 0.35);
+  outline-offset: 2px;
+}
+
+.tct-domain-heatmap-viewtab-active {
+  background: rgba(var(--tct-domain-color-rgb, 0,0,0), 0.18);
+  border-color: rgba(var(--tct-domain-color-rgb, 0,0,0), 0.45);
+}
+
+/* Domain heatmap toolbar (view tabs + previous/next navigation) */
+.tct-domain-heatmap-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 6px 0 10px;
+}
+
+.tct-domain-heatmap-modal .tct-domain-heatmap-viewtabs {
+  margin: 0;
+}
+
+.tct-domain-heatmap-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tct-domain-heatmap-navbtn {
+  appearance: none;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #ffffff;
+  color: #065f46;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.tct-domain-heatmap-navbtn:hover {
+  border-color: rgba(15, 23, 42, 0.22);
+}
+
+.tct-domain-heatmap-navbtn:focus {
+  outline: 2px solid rgba(var(--tct-domain-color-rgb, 0,0,0), 0.25);
+  outline-offset: 2px;
+}
+
+
+
+
+/* --- Vitality ring + tooltip (WP V3) --- */
+
+.tct-vitality-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  max-width: 100%;
+}
+
+.tct-goal-vitality-row {
+  position: relative;
+}
+
+.tct-goal-vitality-trigger {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tct-goal-vitality-trigger:focus {
+  outline: 2px solid rgba(34, 113, 177, 0.35);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.tct-vitality-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+}
+
+.tct-vitality-ring svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tct-vitality-ring .bg-circle,
+.tct-vitality-ring svg circle:nth-child(1) {
+  stroke: rgba(15, 23, 42, 0.15);
+  stroke-width: 4;
+}
+
+.tct-vitality-ring .fg-circle,
+.tct-vitality-ring svg circle:nth-child(2) {
+  stroke: var(--tct-vitality-color, var(--tct-accent, #2271b1));
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 200ms ease, stroke 200ms ease;
+}
+
+.tct-vitality-label {
+  font-size: 13px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.tct-vitality-label [data-tct-vitality-value] {
+  font-weight: 700;
+}
+
+.tct-vitality-tooltip {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 6px;
+  z-index: 60;
+  width: 260px;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid #c3c4c7;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+  color: #065f46;
+  line-height: 1.35;
+}
+
+.tct-vitality-wrap:hover .tct-vitality-tooltip,
+.tct-vitality-wrap.tct-vitality-open .tct-vitality-tooltip,
+.tct-goal-vitality-row:hover .tct-vitality-tooltip,
+.tct-goal-vitality-row.tct-vitality-open .tct-vitality-tooltip,
+.tct-vitality-tooltip.tct-vitality-open,
+.tct-vitality-tooltip.tct-open,
+.tct-vitality-tooltip.is-open,
+.tct-goal-vitality-trigger[aria-expanded="true"] + .tct-vitality-tooltip {
+  display: block;
+}
+
+/* --- Vitality plant image (below ring) --- */
+
+.tct-vitality-plant-wrap {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tct-vitality-plant-img {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  max-height: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+.tct-vitality-plant-name {
+  margin-top: 4px;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #50575e;
+  text-align: center;
+  width: 100%;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* Urgent tab (cross-domain cockpit) */
+.tct-urgent-board {
+  margin-top: 12px;
+}
+
+.tct-urgent-count-badge {
+  background: rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+
+/* Statistics tab (stacked domain spectrum bars) */
+.tct-statistics-card {
+  padding: 18px 18px;
+}
+
+.tct-statistics {
+  display: block;
+  --tct-stats-week-label-width: 240px;
+  --tct-stats-week-col-gap: 12px;
+  --tct-stats-week-row-gap: 3px;
+  /*
+    Week view spacing: the role/goal rows use an 18px caret/placeholder area.
+    Goal bars are shorter than role bars, so the last goal row has extra whitespace below the bar.
+    To make the spacing between the domain row and the first role match the spacing between role blocks,
+    we add an equivalent "domain-to-roles" gap.
+
+    The formula below approximates the perceived bar-to-bar gap between:
+      - the last goal bar of a role and the next role bar
+    and reuses it for:
+      - the domain bar and the first role bar.
+  */
+  --tct-stats-week-caret-size: 18px;
+  --tct-stats-week-goal-bar-h: 7px;
+  --tct-stats-week-domain-to-roles-gap: calc(((var(--tct-stats-week-caret-size) - var(--tct-stats-week-goal-bar-h)) / 2) + var(--tct-stats-week-row-gap));
+  /*
+    Week view: increase separation between:
+      - the domain overview row and the first role/goal block
+      - role/goal block and role/goal block
+    so each reads as a distinct "packet" of information.
+  */
+  --tct-stats-week-role-block-gap: 19px;
+  /*
+    Week view: the domain row uses a full-width highlight band.
+    Use symmetric padding so the domain bar and label are vertically centered
+    within the highlighted band.
+  */
+  --tct-stats-week-domain-row-pad-y: 6px;
+  /*
+    Week/month stats: add a little horizontal breathing room inside the
+    domain panel so carets don't sit flush-left and heatmaps don't touch
+    the right edge.
+  */
+  --tct-stats-week-domain-row-pad-x: 10px;
+}
+
+.tct-stats-week-row {
+  display: grid;
+  grid-template-columns: var(--tct-stats-week-label-width) 1fr;
+  column-gap: var(--tct-stats-week-col-gap);
+  align-items: start;
+}
+
+.tct-stats-week-row > * {
+  min-width: 0;
+}
+
+.tct-stats-role-row,
+.tct-stats-goal-row {
+  align-items: center;
+}
+
+.tct-stats-section-week .tct-stats-domain-row {
+  align-items: center;
+  position: relative;
+  /*
+    The domain highlight is now the full domain panel. Keep the domain row itself
+    unpadded so the panel's padding defines consistent top/bottom breathing room
+    for the entire expanded block.
+  */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/*
+  Week view: make the domain highlight encompass the entire domain block
+  (domain header + all roles/goals under it).
+*/
+.tct-stats-section-week .tct-stats-domain {
+  position: relative;
+  /*
+    Use normal block flow (no flex `gap`) so the domain panel padding stays
+    identical in both collapsed and expanded states.
+
+    Some browsers treat the hidden toggle <input> as participating in flex `gap`,
+    which creates extra top space above the domain row.
+  */
+  display: block;
+  padding-top: var(--tct-stats-week-domain-row-pad-y, 0px);
+  padding-bottom: var(--tct-stats-week-domain-row-pad-y, 0px);
+  padding-left: var(--tct-stats-week-domain-row-pad-x, 0px);
+  padding-right: var(--tct-stats-week-domain-row-pad-x, 0px);
+}
+
+.tct-stats-section-week .tct-stats-domain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: rgba(var(--tct-domain-color-rgb), 0.06);
+  border: 1px solid rgba(var(--tct-domain-color-rgb), 0.18);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/*
+  Keep content above the domain highlight panel background.
+
+  IMPORTANT: Do NOT apply this to the hidden checkbox toggle input.
+  If the toggle input becomes `position: relative` (in-flow), it will
+  create extra vertical space above the domain row (seen only on domains
+  that have nested roles/goals).
+*/
+.tct-stats-section-week .tct-stats-domain > :not(.tct-stats-domain-toggle-input) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Week view: vertically center the domain label + caret with the domain heatmap. */
+.tct-stats-section-week .tct-stats-domain-row .tct-stats-domain-label {
+  align-items: center;
+}
+
+/* Week view: ensure the domain bar column is also vertically centered within the highlighted band. */
+.tct-stats-section-week .tct-stats-domain-row .tct-stats-domain-bar-toggle {
+  /*
+    Keep the domain heatmap clickable as a toggle, but do NOT use a flex container here.
+    In some browsers, a flex wrapper can shrink the weekbar to its min-content width (often 0)
+    because the bar uses fractional grid columns. That made the domain heatmap appear to vanish.
+  */
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Ensure the weekbar stretches across the full heatmap column inside the domain toggle label. */
+.tct-stats-section-week .tct-stats-domain-row .tct-stats-domain-bar-toggle .tct-domain-weekbar {
+  width: 100%;
+}
+
+/* The domain background now comes from the full domain block panel above. */
+.tct-stats-section-week .tct-stats-domain-row::before {
+  content: none;
+}
+
+.tct-stats-section {
+  margin-top: 6px;
+}
+
+.tct-stats-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.tct-stats-section-title {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.tct-stats-section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tct-stats-section-toggles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tct-stats-expand-toggle {
+  appearance: none;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: #fff;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.tct-stats-expand-toggle:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+.tct-stats-expand-toggle:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.35);
+  outline-offset: 2px;
+}
+
+.tct-stats-expand-toggle:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.tct-stats-expand-toggle[aria-pressed="true"] {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.55);
+}
+
+
+.tct-stats-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tct-stats-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: #fff;
+  color: #0f172a;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.tct-stats-nav-btn:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+
+/* Month stats: match Week layout & styling (domain panels + single-row label/bar) */
+.tct-stats-section-month .tct-stats-domain-row {
+  align-items: center;
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Month stats: domain panel highlight, same as Week */
+.tct-stats-section-month .tct-stats-domain {
+  position: relative;
+  display: block;
+  padding-top: var(--tct-stats-week-domain-row-pad-y, 0px);
+  padding-bottom: var(--tct-stats-week-domain-row-pad-y, 0px);
+  padding-left: var(--tct-stats-week-domain-row-pad-x, 0px);
+  padding-right: var(--tct-stats-week-domain-row-pad-x, 0px);
+}
+
+.tct-stats-section-month .tct-stats-domain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: rgba(var(--tct-domain-color-rgb), 0.06);
+  border: 1px solid rgba(var(--tct-domain-color-rgb), 0.18);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/*
+  Keep content above the domain highlight panel background.
+
+  IMPORTANT: Do NOT apply this to the hidden checkbox toggle input.
+*/
+.tct-stats-section-month .tct-stats-domain > :not(.tct-stats-domain-toggle-input) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Month stats: remove "pill" styling on the domain label (Week-style) */
+.tct-stats-section-month .tct-stats-domain-row .tct-stats-domain-label {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* Month stats: bar toggle wrapper should stretch full column width (avoid shrink) */
+.tct-stats-section-month .tct-stats-domain-row .tct-stats-domain-bar-toggle {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.tct-stats-section-month .tct-stats-domain-row .tct-stats-domain-bar-toggle .tct-domain-monthbar {
+  width: 100%;
+}
+
+/* Month stats: remove monthbar outer margins inside the Stats grid (Week-style) */
+.tct-stats-section-month .tct-domain-monthbar {
+  margin: 0;
+  align-self: center;
+}
+
+/* Month stats: give the same "domain to first role" spacing as Week */
+.tct-stats-section-month .tct-stats-domain-roles {
+  margin-top: var(--tct-stats-week-role-block-gap, 6.5px);
+}
+
+/* Month stats: match Week bar framing */
+.tct-stats-section-month .tct-domain-monthbar-bar {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(148, 163, 184, 0.10);
+}
+
+/* Month stats: domain overview bar taller (like Week) */
+.tct-stats-section-month .tct-stats-domain-row .tct-domain-monthbar-strip,
+.tct-stats-section-month .tct-stats-domain-row .tct-domain-monthbar-seg {
+  height: 28px;
+}
+
+.tct-stats-section-month .tct-stats-domain-row .tct-domain-monthbar-weekticks {
+  height: 28px;
+}
+
+/* Month stats: goal bars thinner (like Week) */
+.tct-stats-section-month .tct-goal-monthbar .tct-domain-monthbar-strip,
+.tct-stats-section-month .tct-goal-monthbar .tct-domain-monthbar-seg {
+  height: 7px;
+}
+
+.tct-stats-section-month .tct-goal-monthbar .tct-domain-monthbar-weekticks {
+  height: 7px;
+}
+
+.tct-stats-section-month .tct-goal-monthbar .tct-domain-monthbar-bar {
+  border-radius: 3px;
+  border: none;
+  background: transparent;
+}
+
+.tct-stats-section-month .tct-goal-monthbar .tct-domain-monthbar-strip {
+  border-radius: 3px;
+}
+
+
+
+/* Year stats: match Week/Month layout & styling (domain panels + hierarchy) */
+.tct-stats-section-year .tct-stats-domain-row {
+  align-items: center;
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.tct-stats-section-year .tct-stats-domain {
+  position: relative;
+  display: block;
+  padding-top: var(--tct-stats-week-domain-row-pad-y, 0px);
+  padding-bottom: var(--tct-stats-week-domain-row-pad-y, 0px);
+  padding-left: var(--tct-stats-week-domain-row-pad-x, 0px);
+  padding-right: var(--tct-stats-week-domain-row-pad-x, 0px);
+  border-radius: 10px;
+  margin-top: 10px;
+  z-index: 0;
+}
+
+.tct-stats-section-year .tct-stats-domain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background:
+    linear-gradient(0deg, rgba(var(--tct-domain-color-rgb), 0.06), rgba(var(--tct-domain-color-rgb), 0.06)),
+    #ffffff;
+  border: 1px solid rgba(var(--tct-domain-color-rgb), 0.10);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  z-index: 0;
+}
+
+.tct-stats-section-year .tct-stats-domain > :not(.tct-stats-domain-toggle-input) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove pill styling on domain label (match Week/Month) */
+.tct-stats-section-year .tct-stats-domain-row .tct-stats-domain-label {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+/* Make the whole year bar cell clickable for expand/collapse (like Week/Month) */
+.tct-stats-section-year .tct-stats-domain-row .tct-stats-domain-bar-toggle {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.tct-stats-section-year .tct-stats-domain-row .tct-stats-domain-bar-toggle .tct-domain-yearbar {
+  width: 100%;
+}
+
+/* Year bars: remove outer margins inside Statistics grid */
+.tct-stats-section-year .tct-domain-yearbar {
+  margin: 0;
+  align-self: center;
+}
+
+/*
+  Year stats: match the perceived spacing between stacked packets.
+
+  When goals are expanded, the last goal bar is thinner (7px) but the row height is
+  driven by the 18px caret/placeholder, which leaves extra whitespace under the goal bar.
+  That makes the gap between role packets appear larger than the gap between the domain bar
+  and the first role bar.
+
+  Add that extra half-row whitespace to the domain-to-roles margin so the visual bar-to-bar
+  spacing matches the role packet spacing.
+*/
+.tct-stats-section-year .tct-stats-domain-roles {
+  margin-top: calc(
+    var(--tct-stats-week-role-block-gap, 6.5px)
+    + ((var(--tct-stats-week-caret-size, 18px) - var(--tct-stats-week-goal-bar-h, 7px)) / 2)
+  );
+}
+
+/* Year bars: add same framed look as Week/Month */
+.tct-stats-section-year .tct-domain-yearbar-bar {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(148, 163, 184, 0.10);
+}
+
+/* Year stats: domain overview bar thicker (match Week/Month) */
+.tct-stats-section-year .tct-stats-domain-row .tct-domain-yearbar-strip,
+.tct-stats-section-year .tct-stats-domain-row .tct-domain-yearbar-seg {
+  height: 28px;
+}
+
+/* Year stats: goal bars thinner (match Week/Month) */
+.tct-stats-section-year .tct-goal-yearbar .tct-domain-yearbar-strip,
+.tct-stats-section-year .tct-goal-yearbar .tct-domain-yearbar-seg {
+  height: 7px;
+}
+
+.tct-stats-section-year .tct-goal-yearbar .tct-domain-yearbar-bar {
+  border-radius: 3px;
+  border: none;
+  background: transparent;
+}
+
+.tct-stats-section-year .tct-goal-yearbar .tct-domain-yearbar-strip {
+  border-radius: 3px;
+}
+
+/* Year stats: hide repeated x-axis labels on nested role/goal bars */
+.tct-stats-section-year .tct-stats-domain-roles .tct-domain-yearbar-monthlabels,
+.tct-stats-section-year .tct-stats-role-goals .tct-domain-yearbar-monthlabels {
+  display: none;
+}
+
+
+
+
+
+.tct-stats-nav-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.tct-stats-domain {
+  margin-top: 10px;
+}
+
+.tct-stats-domain-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(var(--tct-domain-color-rgb), 0.06);
+  border: 1px solid rgba(var(--tct-domain-color-rgb), 0.18);
+}
+
+/* Week view: the domain row background spans the full row, so the label itself should not be a separate pill. */
+.tct-stats-section-week .tct-stats-domain-row .tct-stats-domain-label {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  /* Remove extra internal padding so label + caret center against the domain bar. */
+  padding: 0;
+}
+
+/* Week view: explicitly center the bar within the domain row (grid cell). */
+.tct-stats-section-week .tct-stats-domain-row .tct-domain-weekbar {
+  align-self: center;
+}
+
+.tct-stats-domain-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--tct-domain-color);
+  box-shadow: 0 0 0 3px rgba(var(--tct-domain-color-rgb), 0.16);
+}
+
+.tct-stats-domain-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.tct-stats-domain-name,
+.tct-stats-role-name,
+.tct-stats-goal-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.tct-stats-domain-label,
+.tct-stats-role-label,
+.tct-stats-goal-label {
+  min-width: 0;
+}
+
+/* Tighten spacing inside Statistics (many stacked bars) */
+.tct-stats-section-week .tct-domain-weekbar {
+  margin: 0;
+}
+
+/* Week hierarchy: make domain bars taller and goal bars thinner for quick scanning. */
+.tct-stats-section-week .tct-domain-weekbar-static .tct-domain-weekbar-strip,
+.tct-stats-section-week .tct-domain-weekbar-static .tct-domain-weekbar-seg {
+  height: 28px;
+}
+
+.tct-stats-section-week .tct-goal-weekbar .tct-domain-weekbar-strip,
+.tct-stats-section-week .tct-goal-weekbar .tct-domain-weekbar-seg {
+  /* Goals are 1/2 the role bar height (role = 14px in base weekbar styles). */
+  height: 7px;
+}
+
+.tct-stats-section-week .tct-goal-weekbar .tct-domain-weekbar-bar {
+  border-radius: 3px;
+  border: none;
+}
+
+
+.tct-statistics .tct-domain-monthbar {
+  margin: 4px 0 10px;
+}
+
+/* Month stats: monthbars live inside the Week-style grid rows; remove legacy asymmetric margins. */
+.tct-statistics .tct-stats-section-month .tct-domain-monthbar {
+  margin: 0;
+}
+
+.tct-statistics .tct-domain-yearbar {
+  margin: 6px 0 12px;
+}
+
+/* Week stats: hide day labels everywhere to keep vertical rhythm consistent (especially for the first domain). */
+.tct-stats-section-week .tct-domain-weekbar-daylabels {
+  display: none;
+}
+
+.tct-stats-section-month .tct-stats-domain:not(:first-child) .tct-domain-monthbar-weeklabels {
+  display: none;
+}
+
+.tct-stats-section-year .tct-stats-domain:not(:first-child) .tct-domain-yearbar-monthlabels {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Statistics timeline header label strips (Year months, Month weeks, Week days) */
+/* -------------------------------------------------------------------------- */
+
+.tct-stats-label-strip {
+  display: grid;
+  grid-template-columns: var(--tct-stats-week-label-width) 1fr;
+  column-gap: var(--tct-stats-week-col-gap);
+  padding-left: var(--tct-stats-week-domain-row-pad-x, 0px);
+  padding-right: var(--tct-stats-week-domain-row-pad-x, 0px);
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.tct-stats-label-strip > * {
+  min-width: 0;
+}
+
+.tct-stats-label-strip .tct-domain-yearbar-monthlabels,
+.tct-stats-label-strip .tct-domain-monthbar-weeklabels,
+.tct-stats-label-strip .tct-domain-weekbar-daylabels {
+  margin-top: 0;
+}
+
+/* When the header label strip exists, hide the in-row label strips (so they appear only once). */
+.tct-stats-section-year[data-tct-has-label-strip="1"] .tct-stats-domain .tct-domain-yearbar-monthlabels {
+  display: none;
+}
+
+.tct-stats-section-year[data-tct-has-label-strip="1"] .tct-stats-label-strip .tct-domain-yearbar-monthlabels {
+  display: grid;
+}
+
+.tct-stats-section-month[data-tct-has-label-strip="1"] .tct-stats-domain .tct-domain-monthbar-weeklabels {
+  display: none;
+}
+
+.tct-stats-section-month[data-tct-has-label-strip="1"] .tct-stats-label-strip .tct-domain-monthbar-weeklabels {
+  display: block;
+}
+
+.tct-stats-section-week[data-tct-has-label-strip="1"] .tct-stats-label-strip .tct-domain-weekbar-daylabels {
+  display: block;
+}
+
+/* Keep spacing consistent: when a label strip sits above the first domain, remove the domain's top margin. */
+.tct-stats-label-strip + .tct-stats-domain {
+  margin-top: 0;
+}
+
+
+
+
+
+/* Month stats hierarchy: keep nested monthbars compact and aligned */
+.tct-stats-section-month .tct-stats-domain-roles .tct-domain-monthbar,
+.tct-stats-section-month .tct-stats-role-goals .tct-domain-monthbar {
+  margin: 0;
+}
+
+.tct-stats-section-month .tct-stats-domain-roles .tct-domain-monthbar-weeklabels,
+.tct-stats-section-month .tct-stats-role-goals .tct-domain-monthbar-weeklabels {
+  display: none;
+}
+
+/* Month stats hierarchy: keep label indentation consistent with Week */
+.tct-stats-section-month .tct-stats-role-label,
+.tct-stats-section-month .tct-stats-goal-label {
+  padding-left: 0;
+}
+
+/* Statistics: week dropdown (roles per domain) */
+.tct-stats-domain-toggle-input {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.tct-stats-domain-label-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+.tct-stats-domain-caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  color: rgba(var(--tct-domain-color-rgb), 0.85);
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+.tct-stats-caret-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+
+.tct-stats-domain-label-toggle:hover .tct-stats-domain-caret {
+  color: rgba(var(--tct-domain-color-rgb), 1.0);
+}
+
+.tct-stats-domain-bar-toggle {
+  display: block;
+  cursor: pointer;
+}
+
+.tct-stats-domain-toggle-input:checked ~ .tct-stats-domain-row .tct-stats-domain-caret {
+  transform: rotate(90deg);
+}
+
+.tct-stats-domain-toggle-input:not(:checked) ~ .tct-stats-domain-roles {
+  display: none;
+}
+
+/* Week view: make the domain-to-role gap match exactly. */
+.tct-stats-section-week .tct-stats-domain-roles {
+  margin-top: var(--tct-stats-week-role-block-gap, 6.5px);
+}
+
+.tct-stats-domain-roles {
+  /*
+    Role blocks are stacked with a consistent gap.
+
+    Week view applies the domain-to-roles spacing via a week-specific margin-top override
+    so the outer domain panel's padding stays identical in collapsed vs expanded states.
+  */
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--tct-stats-week-role-block-gap, 6.5px);
+}
+
+
+.tct-stats-role-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 0;
+}
+
+.tct-stats-domain-roles .tct-domain-weekbar {
+  margin: 0;
+}
+
+.tct-stats-role .tct-domain-weekbar-daylabels {
+  display: none;
+}
+
+
+/* Statistics: role dropdown (goals per role) */
+.tct-stats-role-toggle-input {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.tct-stats-role-label-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+.tct-stats-role-caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+  color: rgba(var(--tct-domain-color-rgb), 0.78);
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+.tct-stats-role-label-toggle:hover .tct-stats-role-caret {
+  color: rgba(var(--tct-domain-color-rgb), 1.0);
+}
+
+.tct-stats-role-bar-toggle {
+  display: block;
+  cursor: pointer;
+}
+/* Statistics: role caret anchored to the left of the bar */
+.tct-stats-role {
+  position: relative;
+}
+.tct-stats-role-toggle-input:checked ~ .tct-stats-role-row .tct-stats-role-caret {
+  transform: rotate(90deg);
+}
+
+.tct-stats-role-toggle-input:not(:checked) ~ .tct-stats-role-goals {
+  display: none;
+}
+
+.tct-stats-role-goals {
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--tct-stats-week-row-gap, 3px);
+}
+
+.tct-stats-goal-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: italic;
+  color: #334155;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 0;
+}
+
+.tct-stats-role-goals .tct-domain-weekbar {
+  margin: 0;
+}
+
+.tct-stats-goal .tct-domain-weekbar-daylabels {
+  display: none;
+}
+
+/* Year stats: remove legacy yearbar margins inside the Stats grid (fix vertical padding/rhythm) */
+.tct-statistics .tct-stats-section-year .tct-domain-yearbar {
+  margin: 0;
+}
+
+
+/* ============================================================================
+   Reward Widget - Redesigned nav area display
+   Matches existing pill aesthetic
+   ============================================================================ */
+
+.tct-reward-widget {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+}
+
+/* Left column: info stack */
+.tct-reward-widget-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* Title */
+.tct-reward-widget-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1d2327;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Points ratio line: balance / target */
+.tct-reward-widget-ratio {
+  font-size: 18px;
+  color: #50575e;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.tct-reward-widget-balance {
+  font-weight: 800;
+  font-size: 20px;
+  color: #1d2327;
+}
+
+.tct-reward-widget-sep {
+  color: #a7aaad;
+}
+
+.tct-reward-widget-target {
+  color: #646970;
+  font-size: 16px;
+}
+
+.tct-reward-widget-ratio-error {
+  color: #d63638;
+  font-weight: 600;
+}
+
+/* Progress bar row */
+.tct-reward-widget-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tct-reward-widget-progress-track {
+  width: 110px;
+  height: 8px;
+  background: #dcdcde;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.tct-reward-widget-progress-bar {
+  height: 100%;
+  background: #2271b1;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.tct-reward-widget-earned .tct-reward-widget-progress-bar {
+  background: #00a32a;
+}
+
+.tct-reward-widget-pct {
+  font-size: 14px;
+  font-weight: 700;
+  color: #50575e;
+  min-width: 36px;
+}
+
+/* Integrated points button - matches .tct-points-nav-pill */
+.tct-reward-widget-points-btn {
+  appearance: none;
+  border: 1px solid rgba(34, 113, 177, 0.25);
+  background: #fff;
+  color: #1d2327;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.1;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  margin-top: 2px;
+}
+
+.tct-reward-widget-points-btn strong {
+  font-weight: 800;
+}
+
+.tct-reward-widget-points-btn:hover {
+  border-color: rgba(34, 113, 177, 0.45);
+}
+
+.tct-reward-widget-points-btn:focus {
+  outline: 2px solid var(--tct-accent, #2271b1);
+  outline-offset: 2px;
+}
+
+.tct-reward-widget-points-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Right column: reward image */
+.tct-reward-widget-image {
+  flex-shrink: 0;
+}
+
+.tct-reward-widget-image img {
+  height: 150px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* Earned state */
+.tct-reward-widget-earned .tct-reward-widget-pct {
+  color: #00a32a;
+}
+
+/* Error state */
+.tct-reward-widget-error .tct-reward-widget-title {
+  color: #787c82;
+}
+
+/* Generation in progress state */
+.tct-reward-widget-generating .tct-reward-widget-image {
+  position: relative;
+}
+
+.tct-reward-widget-generating-indicator {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 11px;
+  color: #50575e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.tct-reward-widget-generating-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #c3c4c7;
+  border-top-color: #2271b1;
+  border-radius: 50%;
+  animation: tct-spin 0.8s linear infinite;
+}
+
+@keyframes tct-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Points earned/lost stats table (right of reward image) */
+.tct-reward-widget-stats {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.tct-reward-stats-table {
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.tct-reward-stats-table th {
+  font-weight: 600;
+  color: #646970;
+  padding: 0 10px 4px;
+  text-align: right;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid #dcdcde;
+}
+
+.tct-reward-stats-table th:first-child {
+  text-align: left;
+}
+
+.tct-reward-stats-table td {
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.tct-reward-stats-period {
+  font-weight: 600;
+  color: #50575e;
+  text-align: left;
+}
+
+.tct-reward-stats-earned {
+  color: #00a32a;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.tct-reward-stats-lost {
+  color: #d63638;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Comparison rows (Yesterday, Last Week, Last Month) are lighter */
+.tct-reward-stats-table tr:nth-child(even) td {
+  color: #8c8f94;
+  font-weight: 600;
+}
+
+.tct-reward-stats-table tr:nth-child(even) .tct-reward-stats-earned {
+  color: rgba(0, 163, 42, 0.55);
+}
+
+.tct-reward-stats-table tr:nth-child(even) .tct-reward-stats-lost {
+  color: rgba(214, 54, 56, 0.55);
+}
+
+/* Winning row: current period earned > previous period earned */
+.tct-reward-stats-row-winning td {
+  background: rgba(0, 163, 42, 0.08);
+}
+
+/* Losing row: previous period earned > current period earned */
+.tct-reward-stats-row-losing td {
+  background: rgba(214, 54, 56, 0.08);
+}
+
+/* Responsive: smaller image on narrow screens */
+@media (max-width: 600px) {
+  .tct-reward-widget {
+    gap: 10px;
+  }
+
+  .tct-reward-widget-image img {
+    height: 100px;
+  }
+
+  .tct-reward-widget-progress-track {
+    width: 70px;
+  }
+
+  .tct-reward-widget-stats {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tct-reward-widget {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .tct-reward-widget-info {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .tct-reward-widget-image img {
+    height: 80px;
+  }
+
+  .tct-reward-widget-stats {
+    display: none;
+  }
+}
+
+/* Complete tab (green success styling) */
+.tct-tab-complete {
+  --tct-domain-color: #22c55e;
+  --tct-domain-color-rgb: 34, 197, 94;
+}
+
+.tct-complete-board {
+  margin-top: 12px;
+}
+
+.tct-complete-column .tct-role-header {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.tct-complete-count-badge {
+  background: rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.tct-complete-column .tct-domain-goal.tct-goal-status-completed {
+  border-left-color: #22c55e;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(22, 163, 74, 0.04) 100%);
+}
+
+/* Countdown timer form fields in goal modal */
+.tct-timer-enable-row {
+  margin-bottom: 12px;
+}
+
+.tct-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.tct-checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.tct-timer-fields {
+  margin-top: 12px;
+}
+
+.tct-timer-inputs {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tct-timer-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tct-timer-input-group label {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.tct-timer-input-group input {
+  width: 60px;
+  text-align: center;
+  padding: 8px 4px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.tct-timer-input-group input:focus {
+  outline: 2px solid #2271b1;
+  outline-offset: 1px;
+  border-color: #2271b1;
+}
+
+.tct-timer-separator {
+  font-size: 20px;
+  font-weight: 700;
+  color: #64748b;
+  padding-bottom: 8px;
+}
+
+/* Alarm settings within timer fields */
+.tct-alarm-settings {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.tct-alarm-settings-heading {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 12px;
+}
+
+.tct-alarm-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.tct-alarm-row label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.tct-alarm-row select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #1e293b;
+  cursor: pointer;
+  max-width: 220px;
+}
+
+.tct-alarm-row select:focus {
+  outline: 2px solid #2271b1;
+  outline-offset: 1px;
+  border-color: #2271b1;
+}
+
+.tct-alarm-vibration-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.tct-alarm-vibration-row .tct-checkbox-label {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.tct-vibration-notice {
+  font-size: 12px;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* Timer button on goal tiles */
+.tct-goal-timer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.tct-goal-timer-btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+}
+
+.tct-goal-timer-btn .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+/* Timer overlay on goal tiles */
+.tct-goal-timer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.97) 0%, rgba(30, 64, 175, 0.97) 100%);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+  padding: 16px;
+}
+
+.tct-goal-timer-overlay[hidden] {
+  display: none;
+}
+
+.tct-goal-timer-display {
+  font-size: 42px;
+  font-weight: 700;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tct-goal-timer-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tct-timer-ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tct-timer-ctrl-btn[hidden] {
+  display: none;
+}
+
+.tct-timer-ctrl-btn .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.tct-timer-pause-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.tct-timer-pause-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.tct-timer-resume-btn {
+  background: #22c55e;
+  color: #fff;
+}
+
+.tct-timer-resume-btn:hover {
+  background: #16a34a;
+}
+
+.tct-timer-cancel-btn {
+  background: rgba(239, 68, 68, 0.9);
+  color: #fff;
+}
+
+.tct-timer-cancel-btn:hover {
+  background: #dc2626;
+}
+
+.tct-timer-complete-btn {
+  background: #22c55e;
+  color: #fff;
+}
+
+.tct-timer-complete-btn:hover {
+  background: #16a34a;
+}
+
+/* Timer finished state */
+.tct-goal-timer-overlay.tct-timer-finished {
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.97) 0%, rgba(21, 128, 61, 0.97) 100%);
+  animation: tct-timer-pulse 1s ease-in-out infinite;
+}
+
+.tct-goal-timer-overlay.tct-timer-finished .tct-goal-timer-display {
+  font-size: 24px;
+  color: #fff;
+}
+
+.tct-goal-timer-overlay.tct-timer-finished .tct-timer-complete-btn,
+.tct-goal-timer-overlay.tct-timer-finished .tct-timer-cancel-btn {
+  padding: 14px 24px;
+  font-size: 16px;
+}
+
+@keyframes tct-timer-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* Timer paused state */
+.tct-goal-timer-overlay.tct-timer-paused .tct-goal-timer-display {
+  opacity: 0.7;
+}
+
+/* Make goal tile position relative for timer overlay */
+.tct-domain-goal {
+  position: relative;
+}
+
+/* --- Sleep tracking tile (scaffold) --- */
+
+.tct-domain-goal.tct-goal-sleep {
+  border-left-color: #6366f1;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-tile {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px dashed rgba(140, 143, 148, 0.55);
+  border-radius: 10px;
+  background: rgba(99, 102, 241, 0.06);
+}
+.tct-domain-goal.tct-goal-sleep .tct-sleep-date-row {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-date-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  line-height: 1;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-date-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px 3px 10px;
+  border: 1px solid rgba(140, 143, 148, 0.35);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-date-btn:hover {
+  background: rgba(99, 102, 241, 0.06);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-night-range {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-date-btn-icon {
+  flex-shrink: 0;
+  color: #9ca3af;
+  transition: color 0.15s;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-date-btn:hover .tct-sleep-date-btn-icon {
+  color: #6366f1;
+}
+
+/* Calendar dropdown */
+.tct-sleep-cal-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 120;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid rgba(140, 143, 148, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
+  padding: 10px;
+  min-width: 250px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tct-sleep-cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.tct-sleep-cal-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.tct-sleep-cal-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.15s;
+}
+
+.tct-sleep-cal-nav-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: #4338ca;
+}
+
+.tct-sleep-cal-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tct-sleep-cal-table th {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  text-align: center;
+  padding: 2px 0 6px;
+}
+
+.tct-sleep-cal-table td {
+  text-align: center;
+  padding: 1px;
+}
+
+.tct-sleep-cal-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  padding: 0;
+}
+
+.tct-sleep-cal-day:hover {
+  background: rgba(99, 102, 241, 0.12);
+}
+
+/* Night start (the date you select) - solid highlight */
+.tct-sleep-cal-day.tct-sleep-cal-night-start {
+  background: #4338ca;
+  color: #fff;
+  font-weight: 700;
+}
+
+.tct-sleep-cal-day.tct-sleep-cal-night-start:hover {
+  background: #3730a3;
+}
+
+/* Night end (morning/next day) - outlined highlight */
+.tct-sleep-cal-day.tct-sleep-cal-night-end {
+  background: rgba(99, 102, 241, 0.12);
+  color: #4338ca;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 2px rgba(99, 102, 241, 0.45);
+}
+
+.tct-sleep-cal-day.tct-sleep-cal-night-end:hover {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+/* Today indicator (subtle dot) */
+.tct-sleep-cal-day.tct-sleep-cal-today {
+  position: relative;
+}
+
+.tct-sleep-cal-day.tct-sleep-cal-today::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #4338ca;
+}
+
+.tct-sleep-cal-day.tct-sleep-cal-night-start.tct-sleep-cal-today::after {
+  background: #fff;
+}
+
+/* --------- Clock Picker --------- */
+.tct-clock-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9998;
+}
+
+.tct-clock-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(320px, 92vw);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+  z-index: 9999;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.tct-clock-header {
+  background: #4338ca;
+  color: #fff;
+  padding: 16px 20px 14px;
+}
+
+.tct-clock-title {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tct-clock-subtitle {
+  font-size: 12px;
+  opacity: 0.65;
+  margin-top: 2px;
+}
+
+/* Time display row */
+.tct-clock-time-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 16px 20px 8px;
+}
+
+.tct-clock-digit {
+  appearance: none;
+  border: none;
+  background: #f3f4f6;
+  color: #9ca3af;
+  font-size: 44px;
+  font-weight: 600;
+  font-family: inherit;
+  min-width: 68px;
+  padding: 4px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.1;
+}
+
+.tct-clock-digit-active {
+  background: rgba(67, 56, 202, 0.1);
+  color: #4338ca;
+}
+
+.tct-clock-colon {
+  font-size: 40px;
+  font-weight: 600;
+  color: #374151;
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.tct-clock-ampm-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  gap: 2px;
+}
+
+.tct-clock-ampm {
+  appearance: none;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  line-height: 1.2;
+}
+
+.tct-clock-ampm:first-child {
+  border-radius: 6px 6px 0 0;
+}
+
+.tct-clock-ampm:last-child {
+  border-radius: 0 0 6px 6px;
+  border-top: none;
+}
+
+.tct-clock-ampm-active {
+  background: #4338ca;
+  border-color: #4338ca;
+  color: #fff;
+}
+
+/* Clock face */
+.tct-clock-face-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 8px 16px 16px;
+}
+
+.tct-clock-face {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.tct-clock-center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #4338ca;
+  z-index: 3;
+}
+
+.tct-clock-hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 2px;
+  height: 32%;
+  margin-left: -1px;
+  background: #4338ca;
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+  transition: transform 0.15s ease;
+  z-index: 2;
+  border-radius: 2px;
+}
+
+.tct-clock-num {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #374151;
+  cursor: pointer;
+  z-index: 4;
+  padding: 0;
+  transition: background 0.12s, color 0.12s;
+}
+
+.tct-clock-num:hover {
+  background: rgba(67, 56, 202, 0.08);
+}
+
+.tct-clock-num-selected {
+  background: #4338ca;
+  color: #fff;
+  font-weight: 700;
+}
+
+.tct-clock-num-selected:hover {
+  background: #3730a3;
+}
+
+/* Actions */
+.tct-clock-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 16px 14px;
+}
+
+.tct-clock-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tct-clock-btn-cancel {
+  color: #6b7280;
+}
+
+.tct-clock-btn-cancel:hover {
+  background: #f3f4f6;
+}
+
+.tct-clock-btn-save {
+  color: #4338ca;
+  background: rgba(67, 56, 202, 0.08);
+}
+
+.tct-clock-btn-save:hover {
+  background: rgba(67, 56, 202, 0.15);
+}
+
+.tct-clock-btn-save.tct-btn-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* --------- Sleep Clear Popover --------- */
+.tct-sleep-clear-popover {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 110;
+  background: #fff;
+  border: 1px solid rgba(140, 143, 148, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+  padding: 12px 14px;
+  white-space: nowrap;
+  min-width: 180px;
+  text-align: center;
+}
+
+.tct-sleep-clear-popover::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #fff;
+}
+
+.tct-sleep-clear-popover::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: rgba(140, 143, 148, 0.4);
+}
+
+.tct-sleep-clear-popover-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+.tct-sleep-clear-popover-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.tct-sleep-clear-popover-btn {
+  appearance: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 6px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tct-sleep-clear-popover-cancel {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.tct-sleep-clear-popover-cancel:hover {
+  background: #e5e7eb;
+}
+
+.tct-sleep-clear-popover-clear {
+  background: #fde8e8;
+  color: #c53030;
+}
+
+.tct-sleep-clear-popover-clear:hover {
+  background: #fbd5d5;
+}
+
+/* Make the Completed button look interactive in state C */
+.tct-domain-goal.tct-goal-sleep[data-tct-sleep-state="C"] .tct-sleep-primary-btn {
+  cursor: pointer;
+}
+
+.tct-domain-goal.tct-goal-sleep[data-tct-sleep-state="C"] .tct-sleep-primary-btn:hover {
+  background: #d4edda;
+  border-color: #b8d9c2;
+}
+.tct-domain-goal.tct-goal-sleep .tct-sleep-summary-line {
+  margin-top: 6px;
+  font-size: 13px;
+}
+.tct-domain-goal.tct-goal-sleep .tct-sleep-summary-list {
+  margin-top: 8px;
+  border: 1px solid rgba(140, 143, 148, 0.35);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-summary-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-summary-row + .tct-sleep-summary-row {
+  border-top: 1px solid rgba(140, 143, 148, 0.20);
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-summary-row.tct-sleep-editable {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tct-domain-goal.tct-goal-sleep .tct-sleep-summary-row.tct-sleep-editable:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+.tct-domain-goal.tct-goal-sleep .tct-sleep-primary-btn {
+  opacity: 0.85;
+}
+
+.tct-domain-goal.tct-goal-sleep[data-tct-sleep-state="C"] .tct-sleep-tile {
+  border-color: rgba(0, 163, 42, 0.55);
+  background: rgba(0, 163, 42, 0.06);
+}
+
+.tct-domain-goal.tct-goal-sleep[data-tct-sleep-state="C"] .tct-sleep-primary-btn {
+  background: #e8f7ee;
+  border-color: #cfead9;
+  color: #007017;
+  opacity: 1;
+}
+
+.tct-domain-goal.tct-goal-sleep[data-tct-sleep-state="C"] .tct-sleep-primary-btn:disabled {
+  opacity: 1;
+}
+
+@media (max-width: 520px) {
+.tct-domain-goal.tct-goal-sleep .tct-sleep-date-row {
+    flex-wrap: nowrap;
+  }
+}
+
+/* ============================================================
+   Dashboard: Fail button + button pair
+   ============================================================ */
+.tct-goal-btn-pair {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 6px;
+}
+
+.tct-goal-btn-pair .tct-goal-complete-btn {
+    flex: 1 1 auto;
+}
+
+.tct-domain-goal .tct-goal-fail-btn {
+    flex: 0 0 auto;
+    min-width: 52px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    background: transparent;
+    color: #d63638;
+    border: 1px solid rgba(214, 54, 56, 0.45);
+    border-radius: 8px;
+}
+
+.tct-domain-goal .tct-goal-fail-btn:hover,
+.tct-domain-goal .tct-goal-fail-btn:focus {
+    background: rgba(214, 54, 56, 0.08);
+    border-color: #d63638;
+    color: #b32d2e;
+}
+
+
+
+/* ============================================================
+   Dashboard: Compact complete/fail buttons when text truncates
+   ============================================================ */
+.tct-domain-goal .tct-goal-action-btn.tct-goal-btn-compact {
+    position: relative;
+    color: transparent;
+    text-shadow: none;
+}
+
+.tct-domain-goal .tct-goal-action-btn.tct-goal-btn-compact::before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+}
+
+.tct-domain-goal .tct-goal-complete-btn.tct-goal-btn-compact::before {
+    content: "\2713";
+    font-size: 16px;
+    line-height: 1;
+    color: #00a32a;
+    font-weight: 800;
+}
+
+.tct-domain-goal .tct-goal-fail-btn.tct-goal-btn-compact::before {
+    content: "\2715";
+    font-size: 16px;
+    line-height: 1;
+    color: #d63638;
+    font-weight: 900;
+}
+
+.tct-goal-btn-pair.tct-goal-btn-pair-compact .tct-goal-complete-btn,
+.tct-goal-btn-pair.tct-goal-btn-pair-compact .tct-goal-fail-btn {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* ============================================================
+   Backup & Restore (Settings tab)
+   ============================================================ */
+.tct-backup-section {
+    margin-top: 16px;
+}
+
+.tct-backup-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.tct-backup-schedule-info {
+    font-size: 12px;
+}
+
+.tct-backup-list-wrap {
+    margin-top: 8px;
+}
+
+.tct-backup-table {
+    width: 100%;
+    font-size: 13px;
+}
+
+.tct-backup-table th,
+.tct-backup-table td {
+    padding: 8px 10px;
+    vertical-align: middle;
+}
+
+.tct-backup-table th {
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.tct-backup-table td {
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.tct-backup-table tr:last-child td {
+    border-bottom: none;
+}
+
+.tct-backup-actions-cell {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tct-backup-actions-cell .button {
+    font-size: 12px;
+    padding: 2px 8px;
+    min-height: 28px;
+    line-height: 26px;
+}
+
+.tct-backup-restore-btn {
+    color: #2271b1 !important;
+    border-color: #2271b1 !important;
+}
+
+.tct-backup-restore-btn:hover {
+    background: #f0f7fc !important;
+}
+
+.tct-backup-delete-btn {
+    color: #b32d2e !important;
+    border-color: #b32d2e !important;
+}
+
+.tct-backup-delete-btn:hover {
+    background: #fcf0f1 !important;
+}
+
+.tct-backup-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.tct-backup-badge-auto {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tct-backup-badge-manual {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.tct-backup-badge-prerestore {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+
+/* =========================
+   Due schedule: Not-due UX
+   ========================= */
+.tct-domain-goal.tct-goal-not-due {
+    opacity: 0.75;
+}
+
+.tct-domain-goal.tct-goal-not-due .tct-goal-complete-btn,
+.tct-domain-goal.tct-goal-not-due .tct-goal-fail-btn {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Keep the "Next due: Tue" line readable */
+.tct-domain-goal.tct-goal-not-due .tct-goal-pace-line1 {
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* =========================
+   History modal: backdated completion entry
+   ========================= */
+
+.tct-history-backdate {
+	margin: 10px 0 12px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.tct-history-backdate-label {
+	font-size: 13px;
+	color: #50575e;
+}
+
+.tct-history-backdate-controls {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.tct-history-backdate-date {
+	padding: 6px 10px;
+	border: 1px solid #c3c4c7;
+	border-radius: 10px;
+	background: #fff;
+	cursor: pointer;
+	font-size: 13px;
+	min-width: 160px;
+}
+
+.tct-history-backdate-picker {
+	position: relative;
+	display: inline-block;
+}
+
+.tct-history-backdate-calendar {
+	z-index: 999999;
+}
+
+.tct-history-backdate-calendar .tct-sleep-cal-day:disabled {
+	opacity: 0.35;
+	cursor: not-allowed;
+	color: #9ca3af;
+	background: transparent;
+}
+
+.tct-history-backdate-submit.tct-loading {
+	opacity: 0.75;
+	pointer-events: none;
+}
+
+/* Minimal datepicker styling (front-end pages do not ship with a jQuery UI theme) */
+.ui-datepicker {
+	z-index: 999999 !important;
+	padding: 10px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 12px;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+	font-size: 13px;
+}
+
+.ui-datepicker .ui-datepicker-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin-bottom: 6px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+	font-weight: 600;
+	color: #1d2327;
+}
+
+.ui-datepicker table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.ui-datepicker th {
+	padding: 4px;
+	font-weight: 600;
+	color: #50575e;
+}
+
+.ui-datepicker td {
+	padding: 0;
+	text-align: center;
+}
+
+.ui-datepicker td a,
+.ui-datepicker td span {
+	display: block;
+	padding: 6px;
+	border-radius: 8px;
+	text-decoration: none;
+	color: #1d2327;
+}
+
+.ui-datepicker td a:hover {
+	background: #f0f0f1;
+}
+
+.ui-datepicker td.ui-state-disabled span,
+.ui-datepicker td.ui-state-disabled a {
+	opacity: 0.35;
+	cursor: default;
+	background: transparent;
+}
+
+/* Extra class used by our beforeShowDay hook */
+.ui-datepicker td.tct-backdate-disabled span {
+	opacity: 0.35;
+}
+
+/* --------------------------------------------------------------------------
+ * Dashboard quick-complete search (desktop)
+ * -------------------------------------------------------------------------- */
+
+.tct-domain-tabs .tct-dashboard-search{
+	position:relative;
+	margin-left:12px;
+	flex:0 0 260px;
+	max-width:340px;
+	align-self:center;
+}
+
+.tct-domain-tabs .tct-dashboard-search-input{
+	box-sizing:border-box;
+	width:100%;
+	max-width:100%;
+	height:34px;
+	padding:0 40px 0 12px;
+	border:1px solid #dcdcde;
+	border-radius:999px;
+	font-size:13px;
+	line-height:1;
+	background:#fff;
+}
+
+.tct-domain-tabs .tct-dashboard-search-input:focus{
+	outline:none;
+	border-color:#2271b1;
+	box-shadow:0 0 0 2px rgba(34,113,177,0.20);
+}
+
+.tct-domain-tabs .tct-dashboard-search-clear-btn{
+	position:absolute;
+	right:6px;
+	top:50%;
+	transform:translateY(-50%);
+	width:26px;
+	height:26px;
+	border:none;
+	border-radius:999px;
+	background:#dcdcde;
+	color:#50575e;
+	cursor:pointer;
+	display:none;
+	align-items:center;
+	justify-content:center;
+	padding:0;
+	font-size:18px;
+	line-height:1;
+}
+
+.tct-domain-tabs .tct-dashboard-search-clear-btn:hover{
+	background:#c3c4c7;
+}
+
+.tct-domain-tabs .tct-dashboard-search-clear-btn:active{
+	transform:translateY(-50%) scale(0.96);
+}
+
+.tct-domain-tabs .tct-dashboard-search-clear-btn:focus{
+	outline:none;
+	box-shadow:0 0 0 2px rgba(34,113,177,0.25);
+}
+
+.tct-domain-tabs .tct-dashboard-search-input:not(:placeholder-shown) + .tct-dashboard-search-clear-btn{
+	display:flex;
+}
+
+.tct-dashboard-search-dropdown{
+	position:absolute;
+	top:calc(100% + 8px);
+	left:0;
+	right:auto;
+	width:min(560px, 90vw);
+	max-height:70vh;
+	overflow:auto;
+	background:#fff;
+	border:1px solid #dcdcde;
+	border-radius:12px;
+	box-shadow:0 10px 20px rgba(0,0,0,0.12);
+	z-index:99999;
+	padding:8px;
+}
+
+.tct-dashboard-search-dropdown[hidden]{
+	display:none !important;
+}
+
+/* Mobile-style result rows (scoped to the dashboard search dropdown) */
+.tct-dashboard-search-dropdown .tct-mobile-result{
+	background:#fff;
+	border:1px solid #dcdcde;
+	border-radius:8px;
+	margin-bottom:8px;
+	overflow:hidden;
+	transition:box-shadow 0.2s ease,border-color 0.2s ease;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result:last-child{
+	margin-bottom:0;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-expanded{
+	border-color:#2271b1;
+	box-shadow:0 2px 8px rgba(0,0,0,0.10);
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result-header{
+	display:flex;
+	align-items:center;
+	padding:10px 12px;
+	cursor:pointer;
+	gap:10px;
+	user-select:none;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result-header:active{
+	background:#f6f7f7;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result-info{
+	flex:1 1 auto;
+	min-width:0;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result-title{
+	font-size:14px;
+	font-weight:700;
+	color:#1d2327;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result-sub{
+	font-size:12px;
+	color:#646970;
+	margin-top:2px;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result-meta{
+	display:flex;
+	gap:10px;
+	margin-top:6px;
+	font-size:12px;
+	color:#646970;
+	flex-wrap:wrap;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result-body{
+	display:none;
+	padding:10px 12px 12px;
+	border-top:1px solid #dcdcde;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-expanded .tct-mobile-result-body{
+	display:block;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-vitality-badge{
+	width:36px;
+	height:36px;
+	border-radius:999px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	font-weight:800;
+	font-size:13px;
+	flex-shrink:0;
+	border:1px solid #dcdcde;
+	background:#f6f7f7;
+	color:#1d2327;
+	font-variant-numeric:tabular-nums;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn{
+	appearance:none;
+	-webkit-appearance:none;
+	border:none;
+	background:#00a32a;
+	color:#fff;
+	min-width:56px;
+	height:36px;
+	border-radius:10px;
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	gap:4px;
+	flex-shrink:0;
+	cursor:pointer;
+	padding:0 8px;
+	margin:0;
+	font-size:20px;
+	font-weight:700;
+	line-height:1;
+	-webkit-tap-highlight-color:transparent;
+	transition:background 200ms ease;
+	-webkit-user-select:none;
+	user-select:none;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn:hover{
+	filter:brightness(0.95);
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn:active{
+	transform:scale(0.97);
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn:focus{
+	outline:none;
+	box-shadow:0 0 0 2px rgba(0,163,42,0.25);
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn:disabled{
+	opacity:0.55;
+	cursor:not-allowed;
+	transform:none;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn.tct-mobile-row-complete-btn-penalty{
+	background:#d63638;
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn.tct-mobile-row-complete-btn-penalty:focus{
+	box-shadow:0 0 0 2px rgba(214,54,56,0.25);
+}
+
+/* Status-key header tinting (matches mobile intent) */
+.tct-dashboard-search-dropdown .tct-mobile-result[data-status-key="critical"] .tct-mobile-result-header{
+	background:rgba(214,54,56,0.08);
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result[data-status-key="risk"] .tct-mobile-result-header{
+	background:rgba(219,166,23,0.12);
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result[data-status-key="completed"] .tct-mobile-result-header{
+	background:#e8f7ee;
+}
+
+/* Keep the search dropdown from being clipped by the tab-nav overflow by moving
+   the domain tab nav into a flex header wrapper (injected by JS). */
+.tct-domain-tabs .tct-domain-tabs-header{
+	display:flex;
+	align-items:center;
+	gap:12px;
+	padding-bottom:6px;
+	border-bottom:1px solid #e0e0e0;
+}
+
+.tct-domain-tabs .tct-domain-tabs-header .tct-tab-nav{
+	flex:1 1 0;
+	min-width:0;
+	padding-bottom:0;
+	border-bottom:none;
+}
+
+.tct-domain-tabs .tct-domain-tabs-header .tct-dashboard-search{
+	order:2;
+	margin-left:auto;
+	flex:0 1 320px;
+	min-width:200px;
+	max-width:320px;
+}
+
+.tct-domain-tabs .tct-domain-tabs-header .tct-dashboard-search .tct-dashboard-search-dropdown{
+	left:auto;
+	right:0;
+}
+
+/* Dashboard quick search: floating points confirmation */
+.tct-dashboard-search-points-float{
+	position:fixed;
+	z-index:999999;
+	pointer-events:none;
+	font-weight:700;
+	font-size:14px;
+	line-height:1;
+	padding:6px 10px;
+	border-radius:999px;
+	background:rgba(0,0,0,0.78);
+	color:#fff;
+	transform:translate(-50%,-50%);
+	animation:tctDashboardSearchPointsFloat 900ms ease-out forwards;
+	box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
+.tct-dashboard-search-points-float.tct-dashboard-search-points-float-positive{
+	background:rgba(20,140,60,0.9);
+}
+.tct-dashboard-search-points-float.tct-dashboard-search-points-float-negative{
+	background:rgba(170,40,40,0.9);
+}
+@keyframes tctDashboardSearchPointsFloat{
+	0%{opacity:0;transform:translate(-50%,-30%) scale(0.9);}
+	10%{opacity:1;}
+	100%{opacity:0;transform:translate(-50%,-90px) scale(1.05);}
+}
+
+
+/* =========================
+   Availability cycle: desktop paused/active render
+   ========================= */
+.tct-tab-paused {
+  --tct-domain-color: #64748b;
+  --tct-domain-color-rgb: 100, 116, 139;
+}
+
+.tct-paused-board {
+  margin-top: 12px;
+}
+
+.tct-paused-column .tct-role-header {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+}
+
+.tct-paused-count-badge {
+  background: rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.tct-goal-availability-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.tct-goal-availability-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.tct-goal-availability-badge-active {
+  background: rgba(34, 113, 177, 0.14);
+  color: #0b4f80;
+}
+
+.tct-goal-availability-badge-paused {
+  background: rgba(100, 116, 139, 0.16);
+  color: #334155;
+}
+
+.tct-goal-availability-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.tct-goal-availability-meta {
+  font-size: 12px;
+  color: #5f6c7b;
+  margin-bottom: 6px;
+}
+
+.tct-domain-goal.tct-goal-active-cycle {
+  border-left-color: #2271b1;
+}
+
+.tct-domain-goal.tct-goal-paused {
+  background: linear-gradient(135deg, rgba(100, 116, 139, 0.08) 0%, rgba(148, 163, 184, 0.05) 100%);
+  border-color: #d0d7de;
+  border-left-color: #94a3b8;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.tct-domain-goal.tct-goal-paused .tct-domain-goal-title,
+.tct-domain-goal.tct-goal-paused .tct-domain-goal-goalline,
+.tct-domain-goal.tct-goal-paused .tct-goal-completed-line,
+.tct-domain-goal.tct-goal-paused .tct-domain-goal-sub,
+.tct-domain-goal.tct-goal-paused .tct-goal-points-row,
+.tct-domain-goal.tct-goal-paused .tct-goal-vitality-row,
+.tct-domain-goal.tct-goal-paused .tct-vitality-plant-wrap {
+  opacity: 0.62;
+}
+
+.tct-domain-goal.tct-goal-paused .tct-vitality-plant-img {
+  filter: grayscale(0.35);
+}
+
+.tct-domain-goal.tct-goal-paused .tct-goal-availability-row,
+.tct-domain-goal.tct-goal-paused .tct-goal-availability-row *,
+.tct-domain-goal.tct-goal-paused .tct-goal-availability-meta {
+  opacity: 1;
+}
+
+.tct-domain-goal.tct-goal-paused .tct-goal-availability-text,
+.tct-domain-goal.tct-goal-paused .tct-goal-availability-meta {
+  color: #334155;
+}
+
+.tct-domain-goal.tct-goal-paused .tct-goal-status-line,
+.tct-domain-goal.tct-goal-paused .tct-goal-pace-line1,
+.tct-domain-goal.tct-goal-paused .tct-goal-pace-line2,
+.tct-domain-goal.tct-goal-paused .tct-goal-countdown-line {
+  display: none !important;
+}
+
+.tct-domain-goal.tct-goal-paused .tct-goal-complete-btn {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(100, 116, 139, 0.25);
+}
+
+.tct-domain-goal.tct-goal-paused .tct-goal-complete-btn:hover,
+.tct-domain-goal.tct-goal-paused .tct-goal-complete-btn:focus {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.tct-paused-column .tct-domain-goal.tct-goal-paused {
+  border-left-color: #64748b;
+}
+
+/* --- Dashboard search paused-state parity (Chunk 9) --- */
+.tct-dashboard-search-dropdown .tct-mobile-result-availability{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;line-height:1.35;background:rgba(34,113,177,0.08);color:#0b4f80}
+.tct-dashboard-search-dropdown .tct-mobile-result-availability-active{background:rgba(34,113,177,0.10);color:#0b4f80}
+.tct-dashboard-search-dropdown .tct-mobile-result-availability-paused{background:rgba(100,116,139,0.16);color:#334155}
+.tct-dashboard-search-dropdown .tct-mobile-result-availability-meta{color:#5f6c7b}
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-active-cycle{border-color:rgba(34,113,177,0.22)}
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused{background:linear-gradient(135deg,rgba(100,116,139,0.08) 0%,rgba(148,163,184,0.05) 100%);border-color:#d0d7de}
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused .tct-mobile-vitality-badge,
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused .tct-mobile-result-name,
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused .tct-mobile-result-last-done,
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused .tct-mobile-result-countdown,
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused .tct-mobile-result-next-due,
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused .tct-mobile-result-allowed-fails{opacity:.72}
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused .tct-mobile-result-availability,
+.tct-dashboard-search-dropdown .tct-mobile-result.tct-mobile-result-paused .tct-mobile-result-availability-meta{opacity:1}
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn.tct-mobile-row-paused{background:#fff;color:#334155;box-shadow:inset 0 0 0 1px rgba(100,116,139,0.28)}
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn.tct-mobile-row-paused:hover{filter:none;background:#f8fafc}
+.tct-dashboard-search-dropdown .tct-mobile-row-complete-btn.tct-mobile-row-paused:focus{box-shadow:0 0 0 2px rgba(100,116,139,0.18),inset 0 0 0 1px rgba(100,116,139,0.32)}
+
+/* =========================
+   Availability cycle: compact active desktop tiles
+   ========================= */
+.tct-domain-goal.tct-goal-active-cycle .tct-goal-availability-row,
+.tct-domain-goal.tct-goal-active-cycle .tct-goal-availability-meta {
+  display: none !important;
+}
+
+.tct-composite-config-row {
+  border: 1px solid #dcdcde;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fbfbfc;
+}
+
+.tct-composite-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.tct-composite-search-label {
+  margin-bottom: 0;
+}
+
+.tct-composite-picker-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.tct-composite-picker-pane {
+  min-width: 0;
+  border: 1px solid #dcdcde;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+}
+
+.tct-composite-pane-head {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.tct-composite-results,
+.tct-composite-selected-list {
+  display: grid;
+  gap: 10px;
+}
+
+.tct-composite-result-card,
+.tct-composite-selected-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  border: 1px solid #dcdcde;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+}
+
+.tct-composite-result-card {
+  align-items: center;
+}
+
+.tct-composite-selected-card {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.tct-composite-selected-card.is-invalid {
+  border-color: #f2c2c2;
+  background: #fff8f8;
+}
+
+.tct-composite-result-main,
+.tct-composite-selected-main {
+  min-width: 0;
+}
+
+.tct-composite-result-title,
+.tct-composite-selected-title {
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.tct-composite-result-meta,
+.tct-composite-selected-meta {
+  color: #50575e;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.tct-composite-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.tct-composite-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.2;
+  border: 1px solid #dcdcde;
+  background: #f6f7f7;
+  color: #1d2327;
+}
+
+.tct-composite-chip-neutral {
+  background: #f6f7f7;
+}
+
+.tct-composite-chip-paused {
+  background: #fff7db;
+  border-color: #f2d88a;
+}
+
+.tct-composite-chip-warning {
+  background: #fff1f1;
+  border-color: #f2c2c2;
+  color: #8b1e1e;
+}
+
+.tct-composite-chip-selected {
+  background: #eef6ff;
+  border-color: #b9daf7;
+  color: #135e96;
+}
+
+.tct-composite-drag {
+  margin-top: 6px;
+  flex: 0 0 auto;
+}
+
+.tct-composite-remove {
+  align-self: center;
+  white-space: nowrap;
+}
+
+.tct-composite-result-action {
+  align-self: center;
+  white-space: nowrap;
+}
+
+.tct-composite-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.tct-composite-preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid #dcdcde;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+  min-width: 0;
+}
+
+.tct-composite-preview-card strong {
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+@media (max-width: 900px) {
+  .tct-composite-picker-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tct-composite-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .tct-composite-result-card,
+  .tct-composite-selected-card {
+    grid-template-columns: 1fr;
+  }
+
+  .tct-composite-result-action,
+  .tct-composite-remove {
+    justify-self: start;
+  }
+
+  .tct-composite-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.tct-composite-parent-tile {
+  border-style: solid;
+}
+
+.tct-composite-parent-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.tct-composite-parent-summary {
+  font-weight: 600;
+}
+
+.tct-composite-parent-points {
+  margin-top: 10px;
+}
+
+.tct-composite-parent-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tct-composite-parent-child {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.tct-composite-parent-child.is-complete {
+  border-color: #c6f6d5;
+  background: #f0fff4;
+}
+
+.tct-composite-parent-child.is-paused {
+  border-style: dashed;
+  background: #f8fafc;
+}
+
+.tct-composite-parent-child-check {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border: 2px solid #94a3b8;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.tct-composite-parent-child.is-complete .tct-composite-parent-child-check {
+  border-color: #059669;
+  background: #059669;
+  box-shadow: inset 0 0 0 3px #ffffff;
+}
+
+.tct-composite-parent-child.is-paused .tct-composite-parent-child-check {
+  border-style: dashed;
+}
+
+.tct-composite-parent-child-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tct-composite-parent-child-title {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.tct-composite-parent-child-meta {
+  margin-top: 2px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.tct-composite-parent-child-points {
+  flex: 0 0 auto;
+  padding-left: 8px;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tct-composite-parent-empty {
+  margin-top: 12px;
+}
+
+@media (max-width: 782px) {
+  .tct-composite-parent-child {
+    padding: 10px;
+  }
+
+  .tct-composite-parent-child-points {
+    font-size: 12px;
+  }
+}
+
+.tct-dashboard-search-dropdown .tct-mobile-result-composite-parent .tct-mobile-result-header{align-items:flex-start}
+.tct-dashboard-search-dropdown .tct-mobile-result-composite-parent .tct-mobile-result-meta{flex-wrap:wrap}
+.tct-dashboard-search-dropdown .tct-mobile-composite-row-summary{color:#50575e;font-weight:600}
+.tct-dashboard-search-dropdown .tct-mobile-composite-summary{padding:2px 0 6px}
+.tct-dashboard-search-dropdown .tct-mobile-composite-summary-line{font-size:12px;line-height:1.45;color:#50575e;margin:0 0 8px}
+.tct-dashboard-search-dropdown .tct-mobile-composite-summary-pills{display:flex;flex-wrap:wrap;gap:6px}
+.tct-dashboard-search-dropdown .tct-mobile-composite-summary-pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;background:#f6f7f7;color:#1d2327;font-size:11px;font-weight:700;line-height:1.3}
+.tct-dashboard-search-dropdown .tct-mobile-composite-summary-pill-bonus{background:rgba(0,163,42,0.10);color:#0f6b28}
+.tct-dashboard-search-dropdown .tct-mobile-composite-summary-pill-penalty{background:rgba(214,54,56,0.10);color:#8a2424}
+.tct-dashboard-search-dropdown .tct-mobile-composite-match-row{margin-top:8px}
+.tct-dashboard-search-dropdown .tct-mobile-composite-match-note{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;background:rgba(34,113,177,0.10);color:#0b4f80;font-size:11px;font-weight:700;line-height:1.3}
+.tct-dashboard-search-dropdown .tct-mobile-composite-children{display:flex;flex-direction:column;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid #e5e7eb}
+.tct-dashboard-search-dropdown .tct-mobile-result-composite-child{border:1px solid #e2e8f0;border-radius:14px;background:#fff}
+.tct-dashboard-search-dropdown .tct-mobile-result-composite-child .tct-mobile-result-header{padding-left:12px;padding-right:12px}
+.tct-dashboard-search-dropdown .tct-mobile-result-composite-child .tct-mobile-result-body{padding-top:0}
+.tct-dashboard-search-dropdown .tct-mobile-result-composite-match>.tct-mobile-result-header{border-color:rgba(34,113,177,0.30);background:rgba(34,113,177,0.06)}
+.tct-dashboard-search-dropdown .tct-mobile-composite-empty{padding:6px 0 2px;color:#646970;font-size:12px;line-height:1.45}
+
+.tct-history-event-pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;border:1px solid rgba(100,109,118,0.18);background:rgba(100,109,118,0.08);color:#2c3338;font-size:12px;font-weight:600;line-height:1.3}
+.tct-history-event-pill-bonus{background:rgba(0,163,42,0.12);border-color:rgba(0,163,42,0.18);color:#0a6e2f}
+.tct-history-event-pill-perfection{background:rgba(180,118,6,0.12);border-color:rgba(180,118,6,0.2);color:#7a4a00}
+.tct-history-event-pill-penalty{background:rgba(204,24,30,0.12);border-color:rgba(204,24,30,0.2);color:#8a161b}
+.tct-history-event-pill-adjustment{background:rgba(34,113,177,0.12);border-color:rgba(34,113,177,0.2);color:#17496c}
+.tct-history-event-pill-snapshot{background:rgba(100,109,118,0.1);border-color:rgba(100,109,118,0.18);color:#50575e}
+.tct-history-event-pill-completion{background:rgba(0,163,42,0.1);border-color:rgba(0,163,42,0.18);color:#0a6e2f}
+.tct-history-event-pill-fail{background:rgba(204,24,30,0.12);border-color:rgba(204,24,30,0.2);color:#8a161b}
+.tct-ledger-type-note,.tct-history-settlement-window,.tct-history-settlement-note{margin-top:6px;font-size:12px;line-height:1.45;color:#50575e}
+.tct-history-settlement-window{font-weight:600;color:#2c3338}
+.tct-history-settlements-table td{vertical-align:top}

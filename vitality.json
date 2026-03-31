@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "data": {
+    "vitality": 86,
+    "target": 14,
+    "achieved": 9,
+    "time_remaining_seconds": 123456,
+    "time_remaining_label": "1d 10h",
+    "loop_start_utc_mysql": "2026-01-05 00:00:00",
+    "loop_end_utc_mysql": "2026-01-12 00:00:00",
+    "plant_name": "Rubber plant",
+    "plant_bucket": 85,
+    "plant_image_url": "https://example.com/wp-content/uploads/2026/01/Rubber_plant_v85.png"
+  }
+}
